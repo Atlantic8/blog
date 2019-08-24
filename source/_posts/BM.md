@@ -1,6 +1,6 @@
 ---
 title: BM
-date: 2017-03-04 20:33:17
+date: 2017-03-04 20:33:18
 tags: [String]
 categories: Algorithm
 ---
