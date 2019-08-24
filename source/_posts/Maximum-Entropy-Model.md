@@ -139,11 +139,11 @@ $$
 
 ---
 
-第二步，求解$\lambda^{\*}$:
-令$\Psi_{p^{\*}}= \min_{p(y|x)}\Gamma(p,\lambda)$，下一步就是
+第二步，求解$\lambda^{*}$:
+令$\Psi_{p^{*}}= \min_{p(y|x)}\Gamma(p,\lambda)$，下一步就是
 $$
 \begin{equation}
-\lambda^{\*}=arg\max_{\lambda} \Psi_{p^{\*}}
+\lambda^{*}=arg\max_{\lambda} \Psi_{p^{*}}
 \end{equation}
 $$
 

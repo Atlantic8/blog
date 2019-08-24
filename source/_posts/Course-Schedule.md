@@ -23,59 +23,38 @@ BFS拓扑排序可以做，DFS查找回路也可以。
 ```java
 
 public class Solution {
-
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-
         if (prerequisites.length==0 || prerequisites[0].length==0) return true;
-
         List<Set<Integer>> in = new ArrayList<>(), out = new ArrayList<>();
-
         for (int i=0; i<numCourses; i++) {
-
-        	in.add(new HashSet<>());
-
-        	out.add(new HashSet<>());
-
+            in.add(new HashSet<>());
+            out.add(new HashSet<>());
         }
 
         for (int i=0; i<prerequisites.length; i++) {
-
-        	in.get(prerequisites[i][0]).add(prerequisites[i][1]); // pre-course
-
-        	out.get(prerequisites[i][1]).add(prerequisites[i][0]); // later-course
-
+            in.get(prerequisites[i][0]).add(prerequisites[i][1]); // pre-course
+            out.get(prerequisites[i][1]).add(prerequisites[i][0]); // later-course
         }
 
         List<Integer> ready = new ArrayList<>();
-
         for (int i=0; i<numCourses; i++)
-
-        	if (in.get(i).size() == 0) ready.add(i);
+            if (in.get(i).size() == 0) ready.add(i);
 
         while (ready.size() > 0) {
-
-        	int pos = ready.remove(0);
-
-        	Set<Integer> set = out.get(pos);
-
-        	for (Object it : set.toArray()) {
-
-        		in.get((int)it).remove(pos);
-
-        		if (in.get((int)it).size() == 0) ready.add((int)it);
-
-        	}
+            int pos = ready.remove(0);
+            Set<Integer> set = out.get(pos);
+            for (Object it : set.toArray()) {
+                in.get((int)it).remove(pos);
+                if (in.get((int)it).size() == 0) ready.add((int)it);
+            }
 
         }
 
         for (int i=0; i<numCourses; i++)
-
-        	if (in.get(i).size() > 0) return false;
-
+            if (in.get(i).size() > 0) return false;
         return true;
 
     }
-
 }
 
 ```
@@ -93,67 +72,41 @@ public class Solution {
 ```java
 
 public class Solution {
-
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-
         int[] ret = new int[numCourses];
-
         List<Set<Integer>> in = new ArrayList<>(), out = new ArrayList<>();
-
         for (int i=0; i<numCourses; i++) {
-
-        	in.add(new HashSet<>());
-
-        	out.add(new HashSet<>());
-
+            in.add(new HashSet<>());
+            out.add(new HashSet<>());
         }
 
         for (int i=0; i<prerequisites.length; i++) {
-
-        	in.get(prerequisites[i][0]).add(prerequisites[i][1]); // pre-course
-
-        	out.get(prerequisites[i][1]).add(prerequisites[i][0]); // later-course
-
+            in.get(prerequisites[i][0]).add(prerequisites[i][1]); // pre-course
+            out.get(prerequisites[i][1]).add(prerequisites[i][0]); // later-course
         }
 
         int k = 0;
-
         List<Integer> ready = new ArrayList<>();
-
         for (int i=0; i<numCourses; i++) {
-
-        	if (in.get(i).size()==0 && out.get(i).size()==0) ret[k++] = i;
-
-        	else if (in.get(i).size()==0 && out.get(i).size()>0) ready.add(i);
-
+            if (in.get(i).size()==0 && out.get(i).size()==0) ret[k++] = i;
+            else if (in.get(i).size()==0 && out.get(i).size()>0) ready.add(i);
         }
 
         while (ready.size() > 0) {
-
-        	int pos = ready.remove(0);
-
-        	ret[k++] = pos;
-
-        	Set<Integer> set = out.get(pos);
-
-        	for (Object it : set.toArray()) {
-
-        		in.get((int)it).remove(pos);
-
-        		if (in.get((int)it).size() == 0) ready.add((int)it);
-
-        	}
-
+            int pos = ready.remove(0);
+            ret[k++] = pos;
+            Set<Integer> set = out.get(pos);
+            for (Object it : set.toArray()) {
+                in.get((int)it).remove(pos);
+                if (in.get((int)it).size() == 0) ready.add((int)it);
+            }
         }
 
         for (int i=0; i<numCourses; i++)
-
-        	if (in.get(i).size() > 0) return new int[0];
-
+            if (in.get(i).size() > 0) return new int[0];
         return ret;
 
     }
-
 }
 
 ```
@@ -166,9 +119,9 @@ public class Solution {
 
 
 
-	[[100, 200], [200, 1300], [1000, 1250], [2000, 3200]]
+    [[100, 200], [200, 1300], [1000, 1250], [2000, 3200]]
 
-	output: 3
+    output: 3
 
 
 
@@ -187,41 +140,26 @@ public class Solution {
 class Solution {
 
 public:
-
+    
     int scheduleCourse(vector<vector<int>>& courses) {
-
         int ret = 0, sum = 0, n = 0;
-
         priority_queue<int> pq;
-
         sort(courses.begin(), courses.end(), [](const vector<int>& a, const vector<int>& b){
-
             if (a[1] == b[1]) return a[0] < b[0];
-
             return a[1] < b[1];
-
         }); 
 
         for (int i=0; i<courses.size(); i++) {
-
             pq.push(courses[i][0]);
-
             sum += courses[i][0];
-
             if (sum > courses[i][1]) {
-
                 sum -= pq.top();
-
                 pq.pop();
-
             }
-
         }
 
         return pq.size();
-
     }
-
 };
 
 ```
