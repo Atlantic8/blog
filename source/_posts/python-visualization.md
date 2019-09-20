@@ -200,8 +200,8 @@ plt.show()
 ```python
 df = pd.DataFrame()
 $-> df.plot.area    df.plot.box     df.plot.hist    df.plot.pie
-	df.plot.bar     df.plot.density df.plot.kde     df.plot.scatter
-	df.plot.barh    df.plot.hexbin  df.plot.line
+    df.plot.bar     df.plot.density df.plot.kde     df.plot.scatter
+    df.plot.barh    df.plot.hexbin  df.plot.line
 ```
 
 ##### bar plot

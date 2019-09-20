@@ -231,11 +231,11 @@ A::A(A &&a) noexcept : x(a.x), y(x.y) {
 
 A &A::operator=(A && a) noexcept {
     if (this == &a) return *this;  // 自赋值
-	free();   // 释放现在对象的资源
-	x = a.x;
-	y = a.y;
-	a.x = a.y = nullptr;  // 重置源对象的指针
-	return *this;
+    free();   // 释放现在对象的资源
+    x = a.x;
+    y = a.y;
+    a.x = a.y = nullptr;  // 重置源对象的指针
+    return *this;
 }
 ```
 
@@ -248,7 +248,7 @@ A &A::operator=(A && a) noexcept {
 ```java
 struct X {
     int i;               // 内置成员可以移动
-	std::string s;   //  string有自己的移动操作
+    std::string s;   //  string有自己的移动操作
 };
 struct Y {
     X mem;     // X有合成移动操作
@@ -306,12 +306,12 @@ auto last = uninitialized_copy(make_move_iterator(begin()), make_move_iterator(e
 ```java
 ostream& operator<<(ostream& os, const A& a) {
     // ...
-	return os;
+    return os;
 }
 
 istream& operator>>(istream& is, A& a) {
     // .... 包括处理失败情况
-	return is;
+    return is;
 }
 ```
 
@@ -327,8 +327,8 @@ A operator++(int);  // 后置，有形参，返回原值
 
 A A::operator++() {
     A ret = *this;
-	++*this;
-	return ret; // 返回之前的记录
+    ++*this;
+    return ret; // 返回之前的记录
 }
 ```
 
@@ -341,7 +341,7 @@ A A::operator++() {
 string& operator*() const {
     // 检查curr是否在有效范围内，如果是，返回curr所知元素的引用
     auto p = check(curr, "dereference past end");
-	return (*p)[curr];          // *p是对象所指的vector
+    return (*p)[curr];          // *p是对象所指的vector
 }
 
 string * operator->() const{
@@ -358,8 +358,8 @@ string * operator->() const{
 ```java
 struct absInt() {
     int operator()(int val) const {   // 注意参数放在后面的括号里
-	    return val<0? -val:val;
-	}
+        return val<0? -val:val;
+    }
 }
 absInt ai;
 ai(-10);  // 返回10
@@ -370,8 +370,8 @@ stable_sort(words.begin(), words.end(), [](const string& s1, const string& s2){r
 class short_string {
 public:
     bool operator()(const string& s1, const string& s2) const{
-	    return s1.size < s2.size();
-	}
+        return s1.size < s2.size();
+    }
 }
 // short_string()构造一个对象，由于重载了调用运算符，就可以看作"可调用对象"使用
 stable_sort(words.begin(), words.end(), short_string());
@@ -445,11 +445,11 @@ f3(3,4);
 class smallInt {
 public:
     smallInt(int i=0) : val(i) {
-	    if (i<0 || i>255) throw std::out_of_range("Invalid value");
-	}
+        if (i<0 || i>255) throw std::out_of_range("Invalid value");
+    }
     operator int() const {return val;}
-	int operator int() const; // wrong，不能有返回类型
-	operator int(int = 0) const; // wrong，不能有形式参数
+    int operator int() const; // wrong，不能有返回类型
+    operator int(int = 0) const; // wrong，不能有形式参数
 
 private:
     std::size_t val;
@@ -482,10 +482,10 @@ IO类型可以向void*转换，C++11下支持将IO类型向bool显式类型转�
 ```java
 struct A {
     A(int = 0); // 最好不要创建两个转换源都是算术类型的类型转换
-	A(double);
-	operator int() const;  // 最好不要创建两个转换对象都是算术类型的类型转换
-	operator double() const;
-	// other member
+    A(double);
+    operator int() const;  // 最好不要创建两个转换对象都是算术类型的类型转换
+    operator double() const;
+    // other member
 }
 void f2(long double);
 
@@ -506,12 +506,12 @@ A a3(s);  //ok, 使用A::A(int)
 
 ```java
 struct C {
-	C(int);
-	...
+    C(int);
+    ...
 }
 struct D {
-	D(ing);
-	...
+    D(ing);
+    ...
 }
 
 void f(const C&);
@@ -522,7 +522,7 @@ f(10);  //二义性
 
 struct E {
     E(double);
-	...
+    ...
 }
 void f(const C&);
 void f(const E&);
@@ -538,7 +538,7 @@ class A {
 friend A operator+(const A& a, const A& b);
 public:
     A(int = 0);
-	operator int() const {return val};
+    operator int() const {return val};
 private:
     size_t val;
 }
@@ -615,9 +615,9 @@ protected:
     int mem;
 };
 class sneak : base {
-	friend void get(sneak&);  // 可以通过自身对象访问基类的受保护部分
-	friend void get(base&);   // 不能访问基类对象中的受保护成员
-	int j; // private
+    friend void get(sneak&);  // 可以通过自身对象访问基类的受保护部分
+    friend void get(base&);   // 不能访问基类对象中的受保护成员
+    int j; // private
 };
 void get(sneaky& s){s.j = s.mem = 0;}
 void get(base &b) {b.mem = 0;}  // 错误，不能访问
@@ -699,12 +699,12 @@ d.f();      // wrong，参数列表为空的f函数被隐藏了
 class A {
 public:
     A() = default;   // 默认构造
-	A(const A&) = default;   // 拷贝构造
-	A(A&&) = default;        // 移动构造
-	A& operator=(const A&) = default;   // 拷贝赋值
-	A& operator=(A&&) = default;        // 移动赋值
-	virtual ~A();
-	// ......
+    A(const A&) = default;   // 拷贝构造
+    A(A&&) = default;        // 移动构造
+    A& operator=(const A&) = default;   // 拷贝赋值
+    A& operator=(A&&) = default;        // 移动赋值
+    virtual ~A();
+    // ......
 }
 ```
 
@@ -717,13 +717,13 @@ public:
 class base {};
 class D : private base{
     D(const D& d) : base(d), /*D的成员初始值*/ {...} // d作为参数将被绑定到类型为base&的实参上
-	D(D&& d) : base(std::move(d)), /*D的成员初始值*/ {...}
+    D(D&& d) : base(std::move(d)), /*D的成员初始值*/ {...}
 };
 
 D& D::operator= (const D& d) {
     base::operator=(d);  // 为基类部分赋值
-	// 酌情处理自赋值、释放已有资源
-	return *this;
+    // 酌情处理自赋值、释放已有资源
+    return *this;
 }
 ```
 
@@ -768,8 +768,8 @@ basket.push_back(make_shared<derived_quote>("972719", 35, 21, 7));
 
 ```java
 struct base1 {
-	base1() = default;
-	base1(const string&);
+    base1() = default;
+    base1(const string&);
 };
 struct base2 {
 base2() = default;
@@ -777,16 +777,16 @@ base2(const string&);
 };
 // D1尝试继承两个基类中的参数为 const string& 的构造函数
 struct D1 : public base1, public base2 {
-	using base1::base1;  // 继承base1
-	using base2::base2;  // 继承base2
+    using base1::base1;  // 继承base1
+    using base2::base2;  // 继承base2
 };
 
 struct D2 : public base1, public base2 {
-	using base1::base1;  // 继承base1
-	using base2::base2;  // 继承base2
-	// 定义自己的 参数为 const string& 的构造函数
-	D2(const string& s) : base1(s), base2(s);
-	D2() = default;  // 一旦D2定义了自己的构造函数，就必须出现这个
+    using base1::base1;  // 继承base1
+    using base2::base2;  // 继承base2
+    // 定义自己的 参数为 const string& 的构造函数
+    D2(const string& s) : base1(s), base2(s);
+    D2() = default;  // 一旦D2定义了自己的构造函数，就必须出现这个
 };
 ```
 ###### 类型转换与多个基类
@@ -806,19 +806,19 @@ class D1 : public virtual base {};
 class D2 : virtual public base {};
 ```
 
-	class Character {};
-	class BookCharacter : public Character{};
-	class ZooAnimal {};
-	class Bear : public ZooAnimal{};
-	class ToyAnimal{};
-	class TeddyBear : public BookCharacter, public Bear, public virtual ToyAnimal{};
-	// 构造TeddyBear时，构造顺序如下：
-	ZooAnimal();
-	ToyAnimal();
-	Character();
-	BookCharacter();
-	Bear();
-	TeddyBear();
+    class Character {};
+    class BookCharacter : public Character{};
+    class ZooAnimal {};
+    class Bear : public ZooAnimal{};
+    class ToyAnimal{};
+    class TeddyBear : public BookCharacter, public Bear, public virtual ToyAnimal{};
+    // 构造TeddyBear时，构造顺序如下：
+    ZooAnimal();
+    ToyAnimal();
+    Character();
+    BookCharacter();
+    Bear();
+    TeddyBear();
 
 
 #### 标准库特殊设施

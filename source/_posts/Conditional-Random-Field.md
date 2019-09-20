@@ -179,16 +179,16 @@ $$
 ---
 
 1. 从开始状态初始$\vdash$化，对所有的状态$s\in S$，令
-	$\delta_1(s|x)=\Psi_1(\vdash,s,x)$.
-	$\phi_1(s)=\vdash$
+    $\delta_1(s|x)=\Psi_1(\vdash,s,x)$.
+    $\phi_1(s)=\vdash$
 2. 递归计算，对每一个$s\in S, 1\le j\le n$
-	$\delta_j(s|x)=\max_{s'\in S}\delta_{j-1}(s')\cdot \Psi_j(s',s,x)$
-	$\phi_j(s)=arg\max_{s'\in S}\delta_{j-1}(s')\cdot \Psi_j(s',s,x)$
+    $\delta_j(s|x)=\max_{s'\in S}\delta_{j-1}(s')\cdot \Psi_j(s',s,x)$
+    $\phi_j(s)=arg\max_{s'\in S}\delta_{j-1}(s')\cdot \Psi_j(s',s,x)$
 3. 结束迭代
-	$p_{max}=\max_{s'\in S}\delta_{n}(s')$
-	$y_n=arg\max_{s'\in S}\delta_n(s'|x)$
+    $p_{max}=\max_{s'\in S}\delta_{n}(s')$
+    $y_n=arg\max_{s'\in S}\delta_n(s'|x)$
 4. 回溯
-	根据$\phi$数组和$y_n$求出整个$y$序列。
+    根据$\phi$数组和$y_n$求出整个$y$序列。
 
 ---
 

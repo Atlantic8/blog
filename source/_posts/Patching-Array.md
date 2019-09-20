@@ -37,16 +37,16 @@ Return 0.
 ```java
 public class Solution {
     public int minPatches(int[] nums, int n) {
-    	long count = 0, absent = 1, ind = 0;
-    	while (absent <= n) {
-    		if (ind < nums.length && nums[(int) ind] <= absent) {
-    			absent += nums[(int) ind++];
-    		} else {
-    			++count;
-    			absent += absent;
-    		}
-    	}
-    	return (int) count;
+        long count = 0, absent = 1, ind = 0;
+        while (absent <= n) {
+            if (ind < nums.length && nums[(int) ind] <= absent) {
+                absent += nums[(int) ind++];
+            } else {
+                ++count;
+                absent += absent;
+            }
+        }
+        return (int) count;
     }
 }
 ```

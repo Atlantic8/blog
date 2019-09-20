@@ -50,29 +50,29 @@ return [3, 4]
 public class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         if (n == 1) return Collections.singletonList(0);
-    	HashMap<Integer, Set<Integer>> map = new HashMap<>();
+        HashMap<Integer, Set<Integer>> map = new HashMap<>();
         // 建立邻接表
-    	for (int[] edge : edges) {
-    		map.computeIfAbsent(edge[0], k->new HashSet<Integer>()).add(edge[1]);
-    		map.computeIfAbsent(edge[1], k->new HashSet<Integer>()).add(edge[0]);
-    	}
+        for (int[] edge : edges) {
+            map.computeIfAbsent(edge[0], k->new HashSet<Integer>()).add(edge[1]);
+            map.computeIfAbsent(edge[1], k->new HashSet<Integer>()).add(edge[0]);
+        }
         // 叶节点集合
-    	List<Integer> leafs = new LinkedList<>();
-    	for (Integer key : map.keySet())
-    		if (map.get(key).size() == 1) leafs.add(key);
-    	while (n > 2) {
-    		n -= leafs.size();
-    		List<Integer> new_leafs = new LinkedList<>();
-    		for (Integer leaf : leafs) {
-            	// 删除指向此叶节点的边
-    			int box = map.get(leaf).iterator().next();
-    			map.get(box).remove(leaf);
+        List<Integer> leafs = new LinkedList<>();
+        for (Integer key : map.keySet())
+            if (map.get(key).size() == 1) leafs.add(key);
+        while (n > 2) {
+            n -= leafs.size();
+            List<Integer> new_leafs = new LinkedList<>();
+            for (Integer leaf : leafs) {
+                // 删除指向此叶节点的边
+                int box = map.get(leaf).iterator().next();
+                map.get(box).remove(leaf);
                 // 新的叶节点出现
-    			if (map.get(box).size() == 1) new_leafs.add(box);
-    		}
-    		leafs = new_leafs;
-    	}
-    	return leafs;
+                if (map.get(box).size() == 1) new_leafs.add(box);
+            }
+            leafs = new_leafs;
+        }
+        return leafs;
     }
 }
 ```

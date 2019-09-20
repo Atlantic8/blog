@@ -27,25 +27,25 @@ public class Solution {
 private int lo, maxLen;
 
 public String longestPalindrome(String s) {
-	int len = s.length();
-	if (len < 2)
-		return s;
+    int len = s.length();
+    if (len < 2)
+        return s;
     for (int i = 0; i < len-1; i++) {
-     	extendPalindrome(s, i, i);  //assume odd length
-     	extendPalindrome(s, i, i+1); //assume even length
+         extendPalindrome(s, i, i);  //assume odd length
+         extendPalindrome(s, i, i+1); //assume even length
     }
     return s.substring(lo, lo + maxLen);
 }
 
 private void extendPalindrome(String s, int j, int k) {
-	while (j >= 0 && k < s.length() && s.charAt(j) == s.charAt(k)) {
-		j--;
-		k++;
-	}
-	if (maxLen < k - j - 1) {
-		lo = j + 1;
-		maxLen = k - j - 1;
-	}
+    while (j >= 0 && k < s.length() && s.charAt(j) == s.charAt(k)) {
+        j--;
+        k++;
+    }
+    if (maxLen < k - j - 1) {
+        lo = j + 1;
+        maxLen = k - j - 1;
+    }
 }}
 ```
 
@@ -86,54 +86,54 @@ using namespace std;
 // 将字符串处理，比如abcd变成：$#a#b#c#d#.
 // 这样可以将奇数长度的回文和偶数长度回文一起处理。
 string preProcess(string & str) {
-	string ret="$#";
-	for (int i=0; i<str.length(); i++) {
-		ret += str[i];
-		ret += "#";
-	}
-	return ret;
+    string ret="$#";
+    for (int i=0; i<str.length(); i++) {
+        ret += str[i];
+        ret += "#";
+    }
+    return ret;
 }
 int p[2000009]={0};
 void getMaxLength(string str) {
-	// mostFar记录了i之前回文到达的最右坐标
-	// id是与之对应的中心坐标。 p记录的是以i为中心的回文半价，单个字母为1. 
-	int id=0, mostFar=0, maxL=0;
-	p[0] = 0;
-	for (int i=1; i<str.length(); i++) {
-		if (mostFar > i) {
-			int j=2*id-i; // j and i are symmetric by id.
-			if (p[j] < mostFar-i) // extension needed
-				p[i] = p[j];
-			else
-		        p[i] = mostFar-i; // extension needed
-		} else
-			p[i] = 1;
-		// extension
-		while ((i+p[i]<str.length()) && (i-p[i]>=0) && str.at(i+p[i]) == str.at(i-p[i]))
-			++p[i];
-		if (p[i]+i > mostFar) { // update mostFar and id.
-			mostFar = (p[i]+i);
-			id = i;
-		}
-	}
-	for (int i=0; i<str.length(); i++)
-		maxL = max(maxL, p[i]);
-	cout<<maxL-1<<endl;
+    // mostFar记录了i之前回文到达的最右坐标
+    // id是与之对应的中心坐标。 p记录的是以i为中心的回文半价，单个字母为1. 
+    int id=0, mostFar=0, maxL=0;
+    p[0] = 0;
+    for (int i=1; i<str.length(); i++) {
+        if (mostFar > i) {
+            int j=2*id-i; // j and i are symmetric by id.
+            if (p[j] < mostFar-i) // extension needed
+                p[i] = p[j];
+            else
+                p[i] = mostFar-i; // extension needed
+        } else
+            p[i] = 1;
+        // extension
+        while ((i+p[i]<str.length()) && (i-p[i]>=0) && str.at(i+p[i]) == str.at(i-p[i]))
+            ++p[i];
+        if (p[i]+i > mostFar) { // update mostFar and id.
+            mostFar = (p[i]+i);
+            id = i;
+        }
+    }
+    for (int i=0; i<str.length(); i++)
+        maxL = max(maxL, p[i]);
+    cout<<maxL-1<<endl;
 }
 int main() {
-	int n=0;
-	cin>>n;
-	string str="";
-	for (int i=0; i<n; i++) {
-		cin>>str;
-		if (str.length() < 2)
-			cout<<str.length()<<endl;
-		else {
-			str = preProcess(str);
-			getMaxLength(str);
-		}
-	}
-	return 0;
+    int n=0;
+    cin>>n;
+    string str="";
+    for (int i=0; i<n; i++) {
+        cin>>str;
+        if (str.length() < 2)
+            cout<<str.length()<<endl;
+        else {
+            str = preProcess(str);
+            getMaxLength(str);
+        }
+    }
+    return 0;
 }
 
 ```

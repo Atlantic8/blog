@@ -17,13 +17,13 @@ KMP算法是是一种在<b>线性时间</b>内对字符串进行匹配的经典�
 
 那么算法如何确定应该移动几位呢？这样的信息其实隐藏在模式串p中。我们把这些信息放在数组中，称之为next数组。（后面再讨论next数组的求法）
 
-	例子中模式串p的next数组位
+    例子中模式串p的next数组位
     A B C D A B D
     0 0 0 0 1 2 0
 
 所以当第k位匹配失败时，模式串向前移动的位数满足：
 
-	移动位数 = 已匹配的字符数 - next[k-1]
+    移动位数 = 已匹配的字符数 - next[k-1]
 
 ###### next数组
 <b>next数组就是"前缀"和"后缀"的最长的共有元素的长度
@@ -47,7 +47,7 @@ void makeNext(const char P[],int next[]) {
     int m = strlen(P);
     next[0] = 0;
     for (q = 1,k = 0; q < m; ++q) {
-    	// k=0时，无论P[q]和P[k]是否匹配，next[q]都next[k-1]值无关
+        // k=0时，无论P[q]和P[k]是否匹配，next[q]都next[k-1]值无关
         // 不匹配时，根据next[k-1]=j右移，并且看P[q]和P[j]的匹配情况
         while(k > 0 && P[q] != P[k])
             k = next[k-1];
@@ -65,7 +65,7 @@ int kmp(const char T[],const char P[],int next[]) {
     m = strlen(P);
     makeNext(P,next);
     for (i = 0,q = 0; i < n; ++i) {
-    	// 这里的原理和上面一致
+        // 这里的原理和上面一致
         while(q > 0 && P[q] != T[i])
             q = next[q-1];
         if (P[q] == T[i]) {

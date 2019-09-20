@@ -12,16 +12,16 @@ Find the maximum points you can get.
 
 `Example 1`
 
-	Input:
-	[1, 3, 2, 2, 2, 3, 4, 3, 1]
-	Output:
-	23
-	Explanation:
-	[1, 3, 2, 2, 2, 3, 4, 3, 1] 
-	----> [1, 3, 3, 4, 3, 1] (3*3=9 points) 
-	----> [1, 3, 3, 3, 1] (1*1=1 points) 
-	----> [1, 1] (3*3=9 points) 
-	----> [] (2*2=4 points)
+    Input:
+    [1, 3, 2, 2, 2, 3, 4, 3, 1]
+    Output:
+    23
+    Explanation:
+    [1, 3, 2, 2, 2, 3, 4, 3, 1] 
+    ----> [1, 3, 3, 4, 3, 1] (3*3=9 points) 
+    ----> [1, 3, 3, 3, 1] (1*1=1 points) 
+    ----> [1, 1] (3*3=9 points) 
+    ----> [] (2*2=4 points)
 
 `Note: The number of boxes n would not exceed 100.`
 
@@ -37,17 +37,17 @@ $$
 ```java
 int dfs(vector<int>& boxes, int start, int end, int k, int map[100][100][100]) {
     int ret=0;
-	if (start > end) return 0;
-	if (map[start][end][k] > 0) return map[start][end][k];
-	// 记录后面连续boxes[end]的数量
-	while (start<end && boxes[end-1]==boxes[end]) {--end; ++k;}
-	map[start][end][k] = dfs(boxes, start, end-1, 0, map)+(k+1)*(k+1);
-	for (int i=start; i<end; i++) {
-		if (boxes[i] == boxes[end]) {
-			map[start][end][k]=max(map[start][end][k], dfs(boxes, start, i, k+1, map)+dfs(boxes, i+1, end-1, 0, map));
-		}
-	}
-	return map[start][end][k];
+    if (start > end) return 0;
+    if (map[start][end][k] > 0) return map[start][end][k];
+    // 记录后面连续boxes[end]的数量
+    while (start<end && boxes[end-1]==boxes[end]) {--end; ++k;}
+    map[start][end][k] = dfs(boxes, start, end-1, 0, map)+(k+1)*(k+1);
+    for (int i=start; i<end; i++) {
+        if (boxes[i] == boxes[end]) {
+            map[start][end][k]=max(map[start][end][k], dfs(boxes, start, i, k+1, map)+dfs(boxes, i+1, end-1, 0, map));
+        }
+    }
+    return map[start][end][k];
 }
 int removeBoxes(vector<int>& boxes) {
     int map[100][100][100]={0};

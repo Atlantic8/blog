@@ -24,17 +24,17 @@ Note:
 public class Solution {
     public int nthSuperUglyNumber(int n, int[] primes) {
         int[] pos = new int[primes.length], un = new int[n];
-    	un[0] = 1;
-    	for (int i=1; i<n; i++) {
-    		un[i] = Integer.MAX_VALUE;
+        un[0] = 1;
+        for (int i=1; i<n; i++) {
+            un[i] = Integer.MAX_VALUE;
             // 找当下最小的数
-    		for (int j=0; j<primes.length; j++)
-    			un[i] = Math.min(primes[j]*un[pos[j]], un[i]);
+            for (int j=0; j<primes.length; j++)
+                un[i] = Math.min(primes[j]*un[pos[j]], un[i]);
             // 去重
-    		for (int j=0; j<primes.length; j++)
-    			while (primes[j]*un[pos[j]] <= un[i]) pos[j]++;
-    	}
-    	return un[n-1];
+            for (int j=0; j<primes.length; j++)
+                while (primes[j]*un[pos[j]] <= un[i]) pos[j]++;
+        }
+        return un[n-1];
     }
 }
 ```

@@ -18,13 +18,13 @@ updated
 void preOrder(TreeNode *root) {    //非递归前序遍历
     stack<TreeNode*> s;
     TreeNode *p=root;
-	s.push(p);
+    s.push(p);
     while(!s.empty()) {
         p = s.top();
-		s.pop();
-		visit(p);
-		if (p->right) s.push(p->right);
-		if (p->left) s.push(p->left);
+        s.pop();
+        visit(p);
+        if (p->right) s.push(p->right);
+        if (p->left) s.push(p->left);
     }
 }
 ```
@@ -43,14 +43,14 @@ void inOrder(TreeNode *root) {  //非递归中序遍历
     TreeNode *p=root;
     while (p!=NULL || !s.empty()) {
         if (p != NULL) {
-		    s.push(p);
-			p = p->left;
-		} else {
-		    p = s.top();
-			s.pop();
-			visit(p);
-			p = p->right;
-		}
+            s.push(p);
+            p = p->left;
+        } else {
+            p = s.top();
+            s.pop();
+            visit(p);
+            p = p->right;
+        }
     }
 }
 ```
@@ -62,18 +62,18 @@ void inOrder(TreeNode *root) {  //非递归中序遍历
 ```java
 void postOrder(TreeNode *root) {  //非递归后序遍历
     stack<TreeNode*> sTraverse, sVisit;
-	sTraverse.push(root);
+    sTraverse.push(root);
     while(!s.empty()) {
         TreeNode * p = sTraverse.top();
-		sTraverse.pop();
-		sVisit.push(p);
-		if (p->left) sTraverse.push(p->left);
-		if (p->right) sTraverse.push(p->right);
+        sTraverse.pop();
+        sVisit.push(p);
+        if (p->left) sTraverse.push(p->left);
+        if (p->right) sTraverse.push(p->right);
     }
-	while (!sVisit.empty()) {
-	    visit(sVisit.top());
-		sVisit.pop();
-	}
+    while (!sVisit.empty()) {
+        visit(sVisit.top());
+        sVisit.pop();
+    }
 }
 ```
 

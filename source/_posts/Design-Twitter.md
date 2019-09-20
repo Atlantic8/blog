@@ -52,8 +52,8 @@ twitter.getNewsFeed(1);
 ```java
 public class Twitter {
     HashMap<Integer, Set<Integer>> cmap;
-	HashMap<Integer, List<int[]>> tw;
-	int count;
+    HashMap<Integer, List<int[]>> tw;
+    int count;
     /** Initialize your data structure here. */
     public Twitter() {
         cmap = new HashMap<>();
@@ -76,20 +76,20 @@ public class Twitter {
 
         PriorityQueue<List<int[]> > pq = new PriorityQueue<>(new Comparator<List<int[]>>(){
 
-			@Override
-			public int compare(List<int[]> o1, List<int[]> o2) {
-				// TODO Auto-generated method stub
-				return o2.get(0)[0] - o1.get(0)[0];
-			}});
+            @Override
+            public int compare(List<int[]> o1, List<int[]> o2) {
+                // TODO Auto-generated method stub
+                return o2.get(0)[0] - o1.get(0)[0];
+            }});
         if (tw.containsKey(userId) && tw.get(userId).size()>0) pq.offer(tw.get(userId));
         for (Integer it : tmp) {
-        	if (!tw.containsKey(it) || tw.get(it).size()==0) continue;
-        	pq.offer(tw.get(it));
+            if (!tw.containsKey(it) || tw.get(it).size()==0) continue;
+            pq.offer(tw.get(it));
         }
         while (pq.size()>0 && n++<10) {
-        	List<int[]> list = pq.poll();
-        	ret.add(list.get(0)[1]);
-        	if (list.size()>1) pq.offer(list.subList(1, list.size()));
+            List<int[]> list = pq.poll();
+            ret.add(list.get(0)[1]);
+            if (list.size()>1) pq.offer(list.subList(1, list.size()));
         }
         return ret;
     }
@@ -102,10 +102,10 @@ public class Twitter {
 
     /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
     public void unfollow(int followerId, int followeeId) {
-    	if (followerId==followeeId || !cmap.containsKey(followerId)) return;
-    	Set<Integer> tmp = cmap.get(followerId);
-    	if (!tmp.contains(followeeId)) return;
-    	tmp.remove(followeeId);
+        if (followerId==followeeId || !cmap.containsKey(followerId)) return;
+        Set<Integer> tmp = cmap.get(followerId);
+        if (!tmp.contains(followeeId)) return;
+        tmp.remove(followeeId);
     }
 }
 ```

@@ -29,8 +29,8 @@ public boolean hasCycle(ListNode head) {
         walker = walker.next;
         runner = runner.next.next;
         if (walker==runner) return true;
-	}
-	return false;
+    }
+    return false;
 }
 ```
 
@@ -40,7 +40,7 @@ Description
 Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
 
 Note: Do not modify the linked list.
-	  Solve it using O(1) space
+      Solve it using O(1) space
 
 #### Solution 2
 确认一个list是否有回路的方法如上。确定回路入口的方法如下：
@@ -54,26 +54,26 @@ Note: Do not modify the linked list.
 
 ```java
 public class Solution {
-	public ListNode detectCycle(ListNode head) {
-		ListNode slow = head;
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head;
         ListNode fast = head;
 
         while (fast!=null && fast.next!=null){
             fast = fast.next.next;
-        	slow = slow.next;
-			// 找到快指针和慢指针的汇合点，说明loop存在
+            slow = slow.next;
+            // 找到快指针和慢指针的汇合点，说明loop存在
             if (fast == slow){
-            	ListNode slow2 = head;
+                ListNode slow2 = head;
                 // 分别从链表头和汇合点出发的指针，在loop入口处相遇
                 while (slow2 != slow){
-                	slow = slow.next;
+                    slow = slow.next;
                     slow2 = slow2.next;
                 }
                 return slow;
             }
-		}
+        }
         return null;
-	}
+    }
 }
 ```
 

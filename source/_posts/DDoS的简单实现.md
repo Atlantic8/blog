@@ -14,7 +14,7 @@ SYN泛洪攻击(SYN Flood)是一种比较常用的DoS方式之一。通过发送
 
 利用scapy构造一个SYN数据包的方法是：
 
-	pkg = IP(src="202.121.0.12",dst="192.168.0.100")/TCP(sport=100,dport=80,flags="S")
+    pkg = IP(src="202.121.0.12",dst="192.168.0.100")/TCP(sport=100,dport=80,flags="S")
     send(pkt)
 
 其中，IP包中指定了源地址src和目的地址dst，其中src是我们伪造的地址，这是DoS攻击中保护攻击者的一种方式。
@@ -24,7 +24,7 @@ flags的值我们设定为S,说明我们要发送的是SYN数据包，目标端�
 总体采用CS模式，客户机连接服务器，服务器发送指令，然后客户机发起攻击，客户机使用伪装的IP攻击。
 事先规定攻击命令：
 
-	#-H xxx.xxx.xxx.xxx -p xxxx -c <start|stop>
+    #-H xxx.xxx.xxx.xxx -p xxxx -c <start|stop>
 
 'xxx.xxx.xxx.xxx'是目标地址， xxxx表示端口号，int型
 命令可以是start：开始攻击；stop：停止攻击

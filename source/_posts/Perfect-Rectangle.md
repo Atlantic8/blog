@@ -39,25 +39,25 @@ HashMap<String, Integer> mapp = new HashMap<>();
         if (rectangles.length==0 || rectangles[0].length==0) return false;
         int minx=Integer.MAX_VALUE,miny=Integer.MAX_VALUE,maxx=0,maxy=0,sum=0,count=0;
         for (int[] rect : rectangles) {
-        	minx = Math.min(minx, rect[0]);
-        	miny = Math.min(miny, rect[1]);
-        	maxx = Math.max(maxx, rect[2]);
-        	maxy = Math.max(maxy, rect[3]);
-        	if (isRectangleCover_assist(rect[0]+" "+rect[1], 1)) return false;
-        	if (isRectangleCover_assist(rect[0]+" "+rect[3], 2)) return false;
-        	if (isRectangleCover_assist(rect[2]+" "+rect[1], 4)) return false;
-        	if (isRectangleCover_assist(rect[2]+" "+rect[3], 8)) return false;
-        	sum += (rect[2]-rect[0])*(rect[3]-rect[1]);
+            minx = Math.min(minx, rect[0]);
+            miny = Math.min(miny, rect[1]);
+            maxx = Math.max(maxx, rect[2]);
+            maxy = Math.max(maxy, rect[3]);
+            if (isRectangleCover_assist(rect[0]+" "+rect[1], 1)) return false;
+            if (isRectangleCover_assist(rect[0]+" "+rect[3], 2)) return false;
+            if (isRectangleCover_assist(rect[2]+" "+rect[1], 4)) return false;
+            if (isRectangleCover_assist(rect[2]+" "+rect[3], 8)) return false;
+            sum += (rect[2]-rect[0])*(rect[3]-rect[1]);
         }
         for (Integer tmp : mapp.values())
-        	// 只有整体矩形的四个边角才是这些值
-        	if (tmp==1 || tmp==2 || tmp==4 || tmp==8) count += 1;
+            // 只有整体矩形的四个边角才是这些值
+            if (tmp==1 || tmp==2 || tmp==4 || tmp==8) count += 1;
         return count==4 && sum==(maxx-minx)*(maxy-miny);
     }
     // 确定mapp中是否已经存在两个一样的pair
     public boolean isRectangleCover_assist(String key, int value) {
-    	if (mapp.containsKey(key) && (mapp.get(key)&value)!=0) return true;
-    	mapp.put(key, mapp.containsKey(key)?mapp.get(key)|value:value);
-    	return false;
+        if (mapp.containsKey(key) && (mapp.get(key)&value)!=0) return true;
+        mapp.put(key, mapp.containsKey(key)?mapp.get(key)|value:value);
+        return false;
     }
 ```

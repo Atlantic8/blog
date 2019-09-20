@@ -12,10 +12,10 @@ Write a function to find all the <b>10-letter-long sequences</b> (substrings) th
 
 For example,
 
-	Given s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT",
+    Given s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT",
 
-	Return:
-	["AAAAACCCCC", "CCCCCAAAAA"].
+    Return:
+    ["AAAAACCCCC", "CCCCCAAAAA"].
 
 #### Solution
 滑动窗口和哈希表的思想很明显，不过直接将子串作为key放入哈希表中会超出内存限制
@@ -26,32 +26,32 @@ For example,
 
 ```java
 public class Solution {
-	public List<String> findRepeatedDnaSequences(String s) {
-		List<String> ret = new ArrayList<String>();
-		int res=0;
-		HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
-		for (int i=0; i<s.length(); i++) {
-			// 3 bits can indicates one letter. so we total need 30 bits to represent a 10-letter string
-			// while int is 32 bits long, so, &0x3FFFFFFF helps set the first 2 bits to 0.
-			// res<<3 : move the header.
-			// s.charAt(i)&7 : add a new letter.
-			res = res << 3 & 0x3FFFFFFF | (s.charAt(i) & 7);   //get rid of the header and add the tailer.
-			if (map.containsKey(res)==true) {
-				if (map.get(res) == 1)
-					ret.add(s.substring(i-9, i+1));
+    public List<String> findRepeatedDnaSequences(String s) {
+        List<String> ret = new ArrayList<String>();
+        int res=0;
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        for (int i=0; i<s.length(); i++) {
+            // 3 bits can indicates one letter. so we total need 30 bits to represent a 10-letter string
+            // while int is 32 bits long, so, &0x3FFFFFFF helps set the first 2 bits to 0.
+            // res<<3 : move the header.
+            // s.charAt(i)&7 : add a new letter.
+            res = res << 3 & 0x3FFFFFFF | (s.charAt(i) & 7);   //get rid of the header and add the tailer.
+            if (map.containsKey(res)==true) {
+                if (map.get(res) == 1)
+                    ret.add(s.substring(i-9, i+1));
                 map.put(res, map.get(res)+1);
-        	} else
-				map.put(res, 1);
-		}
-		return ret;
-	}
+            } else
+                map.put(res, 1);
+        }
+        return ret;
+    }
 }
 ```
 
 更加节省空间的方法也有，<b>区分四个数其实只需要2bit</b>。先看下ACGT的二进制后三位
 
-	A : 001
-	C : 011
-	G : 111
-	T : 100
+    A : 001
+    C : 011
+    G : 111
+    T : 100
 所以，对于一个字母先&100，再&010即可区分这四个数。（区分较难也没关系，可以写个函数搞定）

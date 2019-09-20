@@ -29,11 +29,11 @@ also, r is the highest node. for example:
 getMaxRoot(1) returns 4.
 each path has a highest node.
 for a single node:
-	maxPrice = max(maxPrice, getMaxRoot(r->left)+getMaxRoot(r->right)+r->val);
+    maxPrice = max(maxPrice, getMaxRoot(r->left)+getMaxRoot(r->right)+r->val);
 ```java
 class Solution {
 public:
-	int maxPrice;
+    int maxPrice;
 public:
     int maxPathSum(TreeNode *root) {
         maxPrice=INT_MIN;
@@ -42,12 +42,12 @@ public:
     }
     // compute the maximum value of the path with hightest and edge node r.
     int getMaxRoot(TreeNode *r) {
-    	if (r == NULL)
-    		return 0;
-   		int leftM  = max(0,getMaxRoot(r->left));
+        if (r == NULL)
+            return 0;
+           int leftM  = max(0,getMaxRoot(r->left));
         int rightM = max(0,getMaxRoot(r->right));  
-    	maxPrice = max(maxPrice, leftM+rightM+r->val);
-    	return max(leftM,rightM)+r->val;
+        maxPrice = max(maxPrice, leftM+rightM+r->val);
+        return max(leftM,rightM)+r->val;
     }
 };
 ```

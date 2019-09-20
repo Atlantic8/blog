@@ -42,8 +42,8 @@ Blob& func(); // ok
 // 之外
 Blob& func {   // wrong
     Blob ret = *this; // ok, in scope
-	...
-	return ret;
+    ...
+    return ret;
 }
 ```
 ###### 类模板和友元

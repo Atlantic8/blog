@@ -11,14 +11,14 @@ Given an array which consists of non-negative integers and an integer m, you can
 Note:
 Given m satisfies the following constraint: 1 ≤ m ≤ length(nums) ≤ 14,000.
 
-	Examples:
+    Examples:
 
-	Input:
-	nums = [1,2,3,4,5]
-	m = 2
+    Input:
+    nums = [1,2,3,4,5]
+    m = 2
 
-	Output:
-	9
+    Output:
+    9
 
 Explanation:
 There are four ways to split nums into two subarrays.
@@ -35,7 +35,7 @@ where the largest sum among the two subarrays is only 9.
 这里考虑使用二分查找法，如果left = right，那么返回left就好
 给定一个可能的结果mid = left+(right-left)/2.，验证<b>是否合法</b>
 
-	判断一个x是否合法的方法如下：
+    判断一个x是否合法的方法如下：
     顺序扫描nums[]，计算块和不大于（尽可能接近）mid的个数c
     如果c > m，那么mid应该变大，相应的c变小；反之，c <= m，说明mid应该变小，相应c变大
 
@@ -45,7 +45,7 @@ where the largest sum among the two subarrays is only 9.
 ```java
 class Solution {
 public:
-	// check if nums can be divided into m subsets s.t each subset's summation <= sum
+    // check if nums can be divided into m subsets s.t each subset's summation <= sum
     bool canSplit(vector<int>& nums, int m, long sum) {
         int c = 1;
         long s = 0;

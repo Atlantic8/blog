@@ -22,36 +22,36 @@ categories: OJ
 可以根据步数从0到16依次枚举，第一个符合条件的就是最小的步数，为了容易深搜，可以设定顺序为一行一行深搜，当一行搜完时从下一行开头搜。下面的代码也可以使用bit的思想压缩空间。
 ```java
 int DFS(int i, int j, int dp) {
-	// step表示当前尝试的步数上限
-	// dp表示在step步数上限的前提下，当前的步数
-	if(dp == step){
-		flag=range();
-		return 0;
-	}
-	if(flag||i==4) return 1;
-	turn(i,j); //翻转当前位置
-	if(j<3)
-		DFS(i,j+1,dp+1); // 下一个列
-	else
-		DFS(i+1,0,dp+1); // 下一行
-	turn(i,j); // 消除当前位置的翻转
-	if(j<3)
-		DFS(i,j+1,dp); // 当前位置不动的情况下，到下一列
-	else
-		DFS(i+1,0,dp); // 当前位置不动的情况下，到下一行
-	return 0;
+    // step表示当前尝试的步数上限
+    // dp表示在step步数上限的前提下，当前的步数
+    if(dp == step){
+        flag=range();
+        return 0;
+    }
+    if(flag||i==4) return 1;
+    turn(i,j); //翻转当前位置
+    if(j<3)
+        DFS(i,j+1,dp+1); // 下一个列
+    else
+        DFS(i+1,0,dp+1); // 下一行
+    turn(i,j); // 消除当前位置的翻转
+    if(j<3)
+        DFS(i,j+1,dp); // 当前位置不动的情况下，到下一列
+    else
+        DFS(i+1,0,dp); // 当前位置不动的情况下，到下一行
+    return 0;
 }
 /*
-	其余代码省略
+    其余代码省略
 */
 int main() {
-	// step表示步数0到16枚举
-	for(step=0; step<=16; step++) {
-		flag=0;
-		// 从(0,0)开始，开始第0步
-		dfs(0,0,0);
-		// 如果找到了，输出即可。因为步数上限step是逐渐提高的
-		if(flag)break;
-	}
+    // step表示步数0到16枚举
+    for(step=0; step<=16; step++) {
+        flag=0;
+        // 从(0,0)开始，开始第0步
+        dfs(0,0,0);
+        // 如果找到了，输出即可。因为步数上限step是逐渐提高的
+        if(flag)break;
+    }
 }
 ```

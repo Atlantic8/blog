@@ -53,48 +53,48 @@ public static List<Integer> findSubstring(String S, String[] L) {
 
 ```java
 public List<Integer> findSubstring(String s, String[] words) {
-		List<Integer> ret = new LinkedList<>();
-		if (s.length() == 0 || words.length == 0)
-			return ret;
-		Map<String, Integer> map = new HashMap<>();
-		for (String word : words) map.put(word, map.containsKey(word)?map.get(word)+1:1);
-		int len = words[0].length(), start = 0, end = 0, count;
-		Map<String, Integer> tmp_map = new HashMap<>();
-		for (int i = 0; i < len; i++) {
-			tmp_map.clear();
-			start = i;
-			end = i;
-			count = 0;
-			while (end + len <= s.length()) {
-				String tmp_str = s.substring(end, end + len), tmp = null;
-				if (map.containsKey(tmp_str)) { // a word
-					if (tmp_map.containsKey(tmp_str)) tmp_map.put(tmp_str, tmp_map.get(tmp_str)+1);
-					else tmp_map.put(tmp_str, 1);
-					count++;
-					if (tmp_map.get(tmp_str) > map.get(tmp_str)) {
-						while (start <= end && tmp_map.get(tmp_str) > map.get(tmp_str)) {
-							tmp = s.substring(start, start + len);
-							tmp_map.put(tmp, tmp_map.get(tmp) - 1);
-							start += len;
-							count--;
-						}
-					}
-					if (count == words.length) {
-						--count;
-						tmp = s.substring(start, start+len);
-						tmp_map.put(tmp, map.get(tmp)-1);
-						ret.add(start);
-						start += len;
-					}
-					end += len;
-				} else { // not a word
-					end += len;
-					start = end;
-					tmp_map.clear();
-					count = 0;
-				}
-			}
-		}
-		return ret;
-	}
+        List<Integer> ret = new LinkedList<>();
+        if (s.length() == 0 || words.length == 0)
+            return ret;
+        Map<String, Integer> map = new HashMap<>();
+        for (String word : words) map.put(word, map.containsKey(word)?map.get(word)+1:1);
+        int len = words[0].length(), start = 0, end = 0, count;
+        Map<String, Integer> tmp_map = new HashMap<>();
+        for (int i = 0; i < len; i++) {
+            tmp_map.clear();
+            start = i;
+            end = i;
+            count = 0;
+            while (end + len <= s.length()) {
+                String tmp_str = s.substring(end, end + len), tmp = null;
+                if (map.containsKey(tmp_str)) { // a word
+                    if (tmp_map.containsKey(tmp_str)) tmp_map.put(tmp_str, tmp_map.get(tmp_str)+1);
+                    else tmp_map.put(tmp_str, 1);
+                    count++;
+                    if (tmp_map.get(tmp_str) > map.get(tmp_str)) {
+                        while (start <= end && tmp_map.get(tmp_str) > map.get(tmp_str)) {
+                            tmp = s.substring(start, start + len);
+                            tmp_map.put(tmp, tmp_map.get(tmp) - 1);
+                            start += len;
+                            count--;
+                        }
+                    }
+                    if (count == words.length) {
+                        --count;
+                        tmp = s.substring(start, start+len);
+                        tmp_map.put(tmp, map.get(tmp)-1);
+                        ret.add(start);
+                        start += len;
+                    }
+                    end += len;
+                } else { // not a word
+                    end += len;
+                    start = end;
+                    tmp_map.clear();
+                    count = 0;
+                }
+            }
+        }
+        return ret;
+    }
 ```

@@ -35,19 +35,19 @@ public:
         return results;
     }
     void recursive(vector<vector<int> > &results,vector<int> &candidates, int target, int index, vector<int> res) {
-    	if (target == 0) {   //a valid solution is achieved
-	    	results.push_back(res);
-	    	return;
-	    }
-	    for (int i=index; i<candidates.size(); i++) {
-    		if (target-candidates.at(i) >= 0) {
-		    	vector<int> temp = res;
-		    	temp.push_back(candidates.at(i));
-		    	////new target, new temp vector,index is i because same candidate is allowed to be used in unlimitde times.
-		    	recursive(results,candidates,target-candidates.at(i),i,temp); 
-		    } else     //if current sum is bigger than target, then adding bigger candidates is useless
-				return;
-    	}
+        if (target == 0) {   //a valid solution is achieved
+            results.push_back(res);
+            return;
+        }
+        for (int i=index; i<candidates.size(); i++) {
+            if (target-candidates.at(i) >= 0) {
+                vector<int> temp = res;
+                temp.push_back(candidates.at(i));
+                ////new target, new temp vector,index is i because same candidate is allowed to be used in unlimitde times.
+                recursive(results,candidates,target-candidates.at(i),i,temp); 
+            } else     //if current sum is bigger than target, then adding bigger candidates is useless
+                return;
+        }
     }
 };
 ```
@@ -143,17 +143,17 @@ class Solution:
 ### Problem 4 : Combination Sum IV
 Given an integer array with all **positive numbers and no duplicates**, find the number of possible combinations that add up to a positive integer target.
 
-	nums = [1, 2, 3]
-	target = 4
+    nums = [1, 2, 3]
+    target = 4
 
-	The possible combination ways are:
+    The possible combination ways are:
     (1, 1, 1, 1)
-	(1, 1, 2)
-	(1, 2, 1)
-	(1, 3)
-	(2, 1, 1)
-	(2, 2)
-	(3, 1)
+    (1, 1, 2)
+    (1, 2, 1)
+    (1, 3)
+    (2, 1, 1)
+    (2, 2)
+    (3, 1)
 
 Note that different sequences are counted as different combinations.
 
@@ -162,7 +162,7 @@ Therefore the output is 7.
 #### Solution
 这是一个DP题，如果简单使用统计的方法可能会超时。
 
-	comb[target] = sum(comb[target - nums[i]]), where 0 <= i < nums.length, and target >= nums[i]
+    comb[target] = sum(comb[target - nums[i]]), where 0 <= i < nums.length, and target >= nums[i]
 
 代码为
 ```java

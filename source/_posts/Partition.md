@@ -65,11 +65,11 @@ void quick_sort(vector<int> &A, int start, int end) {
 否则，如果基准在k左侧，则考虑基准右边的元素；否则考虑左边的元素。**
 ```java
 int findKthLargest (vector<int> &A, int k) {
-	int start=0, end=A.size()-1;
+    int start=0, end=A.size()-1;
     while (start < end) {
-    	int mid = partition(A, start, end);
-    	if (mid == k-1) return A[k-1];
-    	else if (mid < k-1) start = mid+1;
+        int mid = partition(A, start, end);
+        if (mid == k-1) return A[k-1];
+        else if (mid < k-1) start = mid+1;
         else end = mid-1;
     }
 }

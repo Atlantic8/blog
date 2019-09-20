@@ -49,54 +49,54 @@ $$
 以下是c++实现
 ```java
 vector<Point> outerTrees(vector<Point>& points) {
-	if (points.size() < 4) return points;
-	Point bottom = points[0];
-	int index = 0;
-	for (int i=0; i<points.size(); i++) { // search for lowest node 
-		Point point = points[i];
-		if (point.y==bottom.y && point.x<bottom.x) {bottom = point; index = i;}
-		if (point.y < bottom.y) {bottom = point; index = i;}
-	}
-	swap(points[0], points[index]);
-	sort(points.begin()+1, points.end(), [bottom](const Point &p1, const Point &p2){
-		double d1 = (p1.x-bottom.x)*(p1.x-bottom.x)+(p1.y-bottom.y)*(p1.y-bottom.y);
-		double d2 = (p2.x-bottom.x)*(p2.x-bottom.x)+(p2.y-bottom.y)*(p2.y-bottom.y);
-		double x1 = 1.0*(p1.x-bottom.x)*abs(p1.x-bottom.x)/d1;
-		double x2 = 1.0*(p2.x-bottom.x)*abs(p2.x-bottom.x)/d2;
+    if (points.size() < 4) return points;
+    Point bottom = points[0];
+    int index = 0;
+    for (int i=0; i<points.size(); i++) { // search for lowest node 
+        Point point = points[i];
+        if (point.y==bottom.y && point.x<bottom.x) {bottom = point; index = i;}
+        if (point.y < bottom.y) {bottom = point; index = i;}
+    }
+    swap(points[0], points[index]);
+    sort(points.begin()+1, points.end(), [bottom](const Point &p1, const Point &p2){
+        double d1 = (p1.x-bottom.x)*(p1.x-bottom.x)+(p1.y-bottom.y)*(p1.y-bottom.y);
+        double d2 = (p2.x-bottom.x)*(p2.x-bottom.x)+(p2.y-bottom.y)*(p2.y-bottom.y);
+        double x1 = 1.0*(p1.x-bottom.x)*abs(p1.x-bottom.x)/d1;
+        double x2 = 1.0*(p2.x-bottom.x)*abs(p2.x-bottom.x)/d2;
 
-		if (x1 != x2) return x1 > x2; // angle from small to big
-		return d1 < d2; // distance from close to far
-	});
-	int rl = points.size()-2, rr = points.size()-1;
-	while (rl >= 1) { // reverse co-linear nodes from behind if necessary
-	    Point p1 = points[rl];
-	    Point p2 = points[rr];
-	    double d1 = (p1.x-bottom.x)*(p1.x-bottom.x)+(p1.y-bottom.y)*(p1.y-bottom.y);
-		double d2 = (p2.x-bottom.x)*(p2.x-bottom.x)+(p2.y-bottom.y)*(p2.y-bottom.y);
-	    double x1 = 1.0*(p1.x-bottom.x)*abs(p1.x-bottom.x)/d1;
-		double x2 = 1.0*(p2.x-bottom.x)*abs(p2.x-bottom.x)/d2;
-		if (x1 == x2) rl--;
-		else break;
-	}
-	if (++rl < rr && rl >= 1)while (rl < rr) swap(points[rl++], points[rr--]);
+        if (x1 != x2) return x1 > x2; // angle from small to big
+        return d1 < d2; // distance from close to far
+    });
+    int rl = points.size()-2, rr = points.size()-1;
+    while (rl >= 1) { // reverse co-linear nodes from behind if necessary
+        Point p1 = points[rl];
+        Point p2 = points[rr];
+        double d1 = (p1.x-bottom.x)*(p1.x-bottom.x)+(p1.y-bottom.y)*(p1.y-bottom.y);
+        double d2 = (p2.x-bottom.x)*(p2.x-bottom.x)+(p2.y-bottom.y)*(p2.y-bottom.y);
+        double x1 = 1.0*(p1.x-bottom.x)*abs(p1.x-bottom.x)/d1;
+        double x2 = 1.0*(p2.x-bottom.x)*abs(p2.x-bottom.x)/d2;
+        if (x1 == x2) rl--;
+        else break;
+    }
+    if (++rl < rr && rl >= 1)while (rl < rr) swap(points[rl++], points[rr--]);
 
-	vector<Point> ret;
-	ret.push_back(points[0]);
-	ret.push_back(points[1]);
-	for (int i=2; i<points.size(); i++) { remove clock-wize node
-	    int num = 0;
-		while (ret.size() > 2) {
-			// last vector
-			int v1x=ret[ret.size()-1].x-ret[ret.size()-2].x, v1y=ret[ret.size()-1].y-ret[ret.size()-2].y;
-			// current vector
-			int v2x=points[i].x-ret[ret.size()-1].x, v2y=points[i].y-ret[ret.size()-1].y;
-			// cross product x1*y2-x2*y1, positive is ok
-			if (v1x*v2y-v2x*v1y < 0) ret.pop_back();
-			else break;
-		}
-		ret.push_back(points[i]);
-	}
-	return ret;
+    vector<Point> ret;
+    ret.push_back(points[0]);
+    ret.push_back(points[1]);
+    for (int i=2; i<points.size(); i++) { remove clock-wize node
+        int num = 0;
+        while (ret.size() > 2) {
+            // last vector
+            int v1x=ret[ret.size()-1].x-ret[ret.size()-2].x, v1y=ret[ret.size()-1].y-ret[ret.size()-2].y;
+            // current vector
+            int v2x=points[i].x-ret[ret.size()-1].x, v2y=points[i].y-ret[ret.size()-1].y;
+            // cross product x1*y2-x2*y1, positive is ok
+            if (v1x*v2y-v2x*v1y < 0) ret.pop_back();
+            else break;
+        }
+        ret.push_back(points[i]);
+    }
+    return ret;
 }
 ```
 

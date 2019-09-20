@@ -80,13 +80,13 @@ s3 = Series([5,6], index=['f', 'g'])
 # 默认 axis=0
 pd.concat([s1, s2, s3])
 $-> a    0
-	b    1
-	c    2
-	d    3
-	e    4
-	f    5
-	g    6
-	dtype: int64
+    b    1
+    c    2
+    d    3
+    e    4
+    f    5
+    g    6
+    dtype: int64
 
 pd.concat([s1, s2, s3], axis=1)
 $-> 0    1    2
@@ -123,27 +123,27 @@ Colorado    3    4      5
 result = data.stack()
 result
 $-> state     number
-	Ohio      one       0
-          	  two       1
+    Ohio      one       0
+                two       1
               three     2
-	Colorado  one       3
+    Colorado  one       3
               two       4
               three     5
-	dtype: int32
+    dtype: int32
 
 result.unstack()
 $-> number    one  two  three
-	state
-	Ohio        0    1      2
-	Colorado    3    4      5
+    state
+    Ohio        0    1      2
+    Colorado    3    4      5
 
 # unstack(和stack一样)默认操作的是最内层地址，给函数传入层次级别的编号或者名称即可在不同级别操作。
 result.unstack(0)
 $-> state   Ohio  Colorado
-	number
-	one        0         3
-	two        1         4
-	three      2         5
+    number
+    one        0         3
+    two        1         4
+    three      2         5
 result.unstack('state')  # 效果同上
 ```
 unstack操作可能会产生缺失值，而stack操作默认会过滤缺失值，可以设置参数dropna=False取消。
@@ -182,10 +182,10 @@ bins = [18, 25, 35, 60 ,100]
 cats = pd.cut(ages, bins)
 cats
 $-> [(18, 25], (18, 25], (18, 25], (25, 35], (18, 25], ..., (25, 35], (
-	  60, 100], (35, 60], (35, 60], (25, 35]]
-	Length: 12
-	Categories (4, object): [(18, 25] < (25, 35] < (35, 60] < (60, 100]
-	]
+      60, 100], (35, 60], (35, 60], (25, 35]]
+    Length: 12
+    Categories (4, object): [(18, 25] < (25, 35] < (35, 60] < (60, 100]
+    ]
 
 cats.codes   #每个数据的标签
 $-> array([0, 0, 0, 1, 0, 0, 2, 1, 3, 2, 2, 1], dtype=int8)
@@ -195,10 +195,10 @@ $-> Index([u'(18, 25]', u'(25, 35]', u'(35, 60]', u'(60, 100]'], dtype='object')
 # 简单统计
 pd.value_count(cats)
 $-> (18, 25]     5
-	(35, 60]     3
-	(25, 35]     3
-	(60, 100]    1
-	dtype: int64
+    (35, 60]     3
+    (25, 35]     3
+    (60, 100]    1
+    dtype: int64
 ```
 
 - qcut函数根据样本分位数对样本进行划分，可以使得每个bin中的数据数量比较接近
@@ -209,19 +209,19 @@ data = np.random.rand(1000)
 cats = pd.qcut(data, 5)
 pd.value_counts(cats)
 $-> (0.813, 1]           200
-	(0.628, 0.813]       200
-	(0.421, 0.628]       200
-	(0.223, 0.421]       200
-	[0.000386, 0.223]    200
+    (0.628, 0.813]       200
+    (0.421, 0.628]       200
+    (0.223, 0.421]       200
+    [0.000386, 0.223]    200
 
 # 自定义的分位数
 cats = pd.qcut(data, [0, 0.1, 0.5, 0.9, 1.0])
 pd.value_counts(cats)
 $-> (0.539, 0.901]       400
-	(0.127, 0.539]       400
-	(0.901, 1]           100
-	[0.000386, 0.127]    100
-	dtype: int64
+    (0.127, 0.539]       400
+    (0.901, 1]           100
+    [0.000386, 0.127]    100
+    dtype: int64
 ```
 
 ##### 检测和过滤异常值
@@ -380,7 +380,7 @@ grouped = df.groupby('key1')
 
 glist = list(grouped)  # glist中包含的是(分组名, 数据块)组成的元组
 $-> [('a',
-	    data1     data2 key1 key2
+        data1     data2 key1 key2
   0  2.128648  0.552487    a  one
   1  2.040146 -0.974248    a  two
   4  0.429355  0.604959    a  one),
@@ -391,12 +391,12 @@ $-> [('a',
 
 gdict = dict(glist)  # 字典化
 $-> {'a':       data1     data2 key1 key2
- 		0  2.128648  0.552487    a  one
- 		1  2.040146 -0.974248    a  two
- 		4  0.429355  0.604959    a  one,
+         0  2.128648  0.552487    a  one
+         1  2.040146 -0.974248    a  two
+         4  0.429355  0.604959    a  one,
      'b':       data1     data2 key1 key2
- 		2 -1.442976 -0.404534    b  one
- 		3  1.796789 -1.413561    b  two}
+         2 -1.442976 -0.404534    b  one
+         3  1.796789 -1.413561    b  two}
 
 dict(list(df.groupby(df.dtypes, axis=1)))
 ```
@@ -493,7 +493,7 @@ Travis -1.114370 -0.008250 -1.070794 -0.841406 -0.169769
 
 # 传入自定义的函数也可以，需要注意的是自定义函数的输入参数是已经分好组的各个分组
 def my_function(arr):
-	return arr-arr.mean()
+    return arr-arr.mean()
 ```
 
 ##### apply：拆分-应用-合并
@@ -505,7 +505,7 @@ def my_function(arr):
 ```python
 # 取列'tip_pct'排前五的记录
 def top(df, n=5, col='tip_pct'):
-	return df.sort_index(by=col)[-n:]
+    return df.sort_index(by=col)[-n:]
 df.groupby('smoker').apply(top)
 
 # 禁止分组键
@@ -518,7 +518,7 @@ df.groupby('smoker', group_keys=False).apply(top)
 
 ```python
 def get_status(group):
-	return {'min':group.min, 'max':group.max, 'count':group.count}
+    return {'min':group.min, 'max':group.max, 'count':group.count}
 
 factor = pd.cut(df.data1, 4) # labels=False，只获取分位数编号
 grouped = df.data2.groupby(factor)

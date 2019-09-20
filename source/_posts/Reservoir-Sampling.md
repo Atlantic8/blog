@@ -9,10 +9,10 @@ categories: Algorithm
 Reservoir Sampling（水塘抽样）是一系列的随机算法，其目的在于从包含n个项目的集合S中选取k个样本，其中n为一很大或未知的数量，尤其适用于<b>不能把所有n个项目都存放到主内存</b>的情况。
 算法思路如下：
 
-	从S中抽取首k项放入「水塘」中
-	对于每一个S[j]项（j ≥ k）：
-    	随机产生一个范围从0到j的整數r
-    	若 r < k 则把水塘中的第r项换成S[j]项
+    从S中抽取首k项放入「水塘」中
+    对于每一个S[j]项（j ≥ k）：
+        随机产生一个范围从0到j的整數r
+        若 r < k 则把水塘中的第r项换成S[j]项
 
 ##### 相关问题
 ###### 可否在一未知大小的集合中，随机取出一元素？
@@ -37,16 +37,16 @@ Given an array of integers with possible duplicates, randomly output the index o
 Note:
 The <b>array size can be very large</b>. Solution that uses too much extra space will not pass the judge.
 
-	Example:
+    Example:
 
-	int[] nums = new int[] {1,2,3,3,3};
-	Solution solution = new Solution(nums);
+    int[] nums = new int[] {1,2,3,3,3};
+    Solution solution = new Solution(nums);
 
-	// pick(3) should return either index 2, 3, or 4 randomly. Each index should have equal 	probability of returning.
-	solution.pick(3);
+    // pick(3) should return either index 2, 3, or 4 randomly. Each index should have equal     probability of returning.
+    solution.pick(3);
 
-	// pick(1) should return 0. Since in the array only nums[0] is equal to 1.
-	solution.pick(1);
+    // pick(1) should return 0. Since in the array only nums[0] is equal to 1.
+    solution.pick(1);
 
 
 解体思想：用简单的map思路来做会超出空间限制，水塘抽样是比较好的方法
@@ -57,16 +57,16 @@ The <b>array size can be very large</b>. Solution that uses too much extra space
 ```java
 vector<int> data;
 void Solution(vector<int> nums) {
-	srand((int)time(NULL)); // 设置时间种子，放在pick里面会导致之间间隔太短而使得随机数不随机
-	data = nums;
+    srand((int)time(NULL)); // 设置时间种子，放在pick里面会导致之间间隔太短而使得随机数不随机
+    data = nums;
 }
 
 int pick(int target) {
-	int ret = 0, n = 1;
-	for (int i=0; i<data.size(); i++) {
-		if (data.at(i) != target) continue;
-		else if (rand()%n++ == 0) ret = i;  // 以以1/k的概率使用第k个target值
-	}
-	return ret;
+    int ret = 0, n = 1;
+    for (int i=0; i<data.size(); i++) {
+        if (data.at(i) != target) continue;
+        else if (rand()%n++ == 0) ret = i;  // 以以1/k的概率使用第k个target值
+    }
+    return ret;
 }
 ```

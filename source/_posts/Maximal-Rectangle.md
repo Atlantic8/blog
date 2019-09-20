@@ -44,18 +44,18 @@ public class Solution {
             int left_most = 0, right_most = n-1;
             // 要想使用上一行的left值，本行的left_most必须小于等于上一行对应位的left值
             for (int j=0; j<n; j++) {
-        	    if (matrix[i][j]=='0') {left_most=Math.max(left_most, j+1); left[j] = 0;}
-        	    else left[j] = Math.max(left[j], left_most);
+                if (matrix[i][j]=='0') {left_most=Math.max(left_most, j+1); left[j] = 0;}
+                else left[j] = Math.max(left[j], left_most);
             }
             for (int j=n-1; j>=0; j--) {
-        	    if (matrix[i][j]=='1') right[j] = Math.min(right[j], right_most);
-        	    else {right_most = Math.min(right_most, j-1); right[j] = n-1;}
+                if (matrix[i][j]=='1') right[j] = Math.min(right[j], right_most);
+                else {right_most = Math.min(right_most, j-1); right[j] = n-1;}
             }
             // 更新height值，并计算以本行中每个点为底，最高的矩形的面积
             for (int j=0; j<n; j++) {
-        	    if (matrix[i][j]=='0') height[j] = 0;
-        	    else height[j] += 1;
-        	    ret = Math.max(ret, (right[j]-left[j]+1)*height[j]);
+                if (matrix[i][j]=='0') height[j] = 0;
+                else height[j] += 1;
+                ret = Math.max(ret, (right[j]-left[j]+1)*height[j]);
             }
         }
         return ret;

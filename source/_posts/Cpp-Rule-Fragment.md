@@ -17,7 +17,7 @@ int x(0);
 ```
 使用花括号初始化变量在C++11中得到全面应用，但是用于内置类型的变量时，使用花括号初始化形式有个重要的特点：
 
-	使用列表初始化且初始化存在丢失信息的风险，编译器将报错
+    使用列表初始化且初始化存在丢失信息的风险，编译器将报错
 
 比如
 
@@ -265,18 +265,18 @@ get_val(s,3) = 'A';       // 可以对左值进行赋值
 ##### 返回数组指针
 普通的数组指针声明如下
 
-	type (*name)[dimension]
+    type (*name)[dimension]
 
 返回数组指针的函数形式如下
 
-	type ( *function(parameter_list) ) [dimension]
+    type ( *function(parameter_list) ) [dimension]
 
 ###### 类型别名
 也可以考虑使用类型别名
 
-	typedef int arrT[10];
-	using arrT = int[10];
-	arrt* func(int i);
+    typedef int arrT[10];
+    using arrT = int[10];
+    arrt* func(int i);
 
 ###### 尾置返回类型
 - 任何函数都可以使用尾置返回类型
@@ -293,7 +293,7 @@ int odd[] = {1,3,5,7,9};
 // decltype(odd) 返回的是数组，需要在加一个*变成指针
 decltype(odd) * func(int i) {
     // ...........
-	return &odd;
+    return &odd;
 }
 ```
 
@@ -329,8 +329,8 @@ int screen(sz, sz, char='*');  // 错误，重复声明
 ###### 函数匹配
 - 优先选择精确匹配、最匹配，所谓最匹配要看实参与形参的接近程度
 - 有且只有一个函数满足以下条件，则匹配成功
-	- 该函数每个函数的匹配都不劣与其他函数需要的匹配
-	- 至少有一个实参的匹配优于其他可行函数提供的匹配
+    - 该函数每个函数的匹配都不劣与其他函数需要的匹配
+    - 至少有一个实参的匹配优于其他可行函数提供的匹配
 - 上面两步检查后没有函数脱颖而出，那么判定为二义性，报错
 
 ```java
@@ -343,9 +343,9 @@ f(2,2.5);
 
 实参到形参的类型转换分为几个等级，如下
 1. 精确匹配
-	- 实参、形参类型相同
-	- 实参从数组或函数类型转化成对应的指针
-	- 向实参添加顶层const、从实参中删除顶层const
+    - 实参、形参类型相同
+    - 实参从数组或函数类型转化成对应的指针
+    - 向实参添加顶层const、从实参中删除顶层const
 2. 通过const转换实现的匹配（比如创建指向非常量的常量指针、引用）
 3. 通过类型提升实现的匹配（short+int=int整型提升）
 4. 通过算术类型转换（int转double，所有算术类型转换级别一样）或指针实现的匹配
@@ -414,8 +414,8 @@ double const_func(int a, int b) const {}
 // 返回值是引用
 New_Class& New_Class::hello () {
     //....
-	attribute += 1;
-	return *this;
+    attribute += 1;
+    return *this;
 }
 New_Class nc;
 nc.hello();  // nc的attribute属性已经改变了
@@ -431,7 +431,7 @@ nc.hello();  // nc的attribute属性已经改变了
 // ostream、print也类似，定义输出函数应该尽量减少对格式的控制
 istream &read(istream &is, New_Class &item) {
     is >> item.a1 >> item.a2 >> item.a3;
-	return is;
+    return is;
 }
 // 调用
 istream &is;
@@ -509,8 +509,8 @@ friend istream & read(istream &is, Class2 & c2);
 ```java
 struct data {
     int x;
-	char c;
-	string s;
+    char c;
+    string s;
 }
 ```
 
@@ -527,7 +527,7 @@ struct data {
 class A {
 private:
     static A a;  // 正确，静态成员可以使不完全类型
-	A b;           // 错误，数据成员必须是完全类型，不过可以定义指针、引用
+    A b;           // 错误，数据成员必须是完全类型，不过可以定义指针、引用
 }
 ```
 
@@ -566,14 +566,14 @@ array<int, 3> arr1 = arr;  //正确，类型一定要一致
 
 ###### 顺序容器的操作
 
-	seq.assign(b,e); // 将seq中的元素替换成迭代器b、e所表示范围中的元素
-	seq.assign(il);   // 将seq中的元素替换成初始化列表il中的元素，比如il={1,2,3,4}，为值列表
-	seq.assign(n,t); // 将seq中的元素替换成n个元素t
-	
-	c.insert(p, t); // 在迭代器p之前添加元素t，返回添加元素的迭代器
-	c.insert(p, n, t); // 在迭代器p之前添加n个元素t，返回第一个添加的元素的迭代器
-	c.insert(p, b, e); // 在迭代器p之前添加迭代器b、e之间的元素
-	c.insert(p, il);
+    seq.assign(b,e); // 将seq中的元素替换成迭代器b、e所表示范围中的元素
+    seq.assign(il);   // 将seq中的元素替换成初始化列表il中的元素，比如il={1,2,3,4}，为值列表
+    seq.assign(n,t); // 将seq中的元素替换成n个元素t
+    
+    c.insert(p, t); // 在迭代器p之前添加元素t，返回添加元素的迭代器
+    c.insert(p, n, t); // 在迭代器p之前添加n个元素t，返回第一个添加的元素的迭代器
+    c.insert(p, b, e); // 在迭代器p之前添加迭代器b、e之间的元素
+    c.insert(p, il);
 
 **向一个vector、string、deque插入元素会使所有的指向容器的迭代器、引用和指针失效**
 
@@ -584,8 +584,8 @@ array<int, 3> arr1 = arr;  //正确，类型一定要一致
 class person{
 public:
     string name;
-	int age;
-	person(string nm, int ag);
+    int age;
+    person(string nm, int ag);
 }
 c.emplace_front("zhangsan", 10); // 插入10岁的zhangsan的元素
 c.push_front("zhangsan", 10); // 错误，没有接受三个参数的push_front版本
@@ -595,8 +595,8 @@ c.push_front(person("zhangsan",10)); // 正确，先构造对象
 顺序容器还支持关系运算符，从头向尾比较，比较直观。
 ###### swap
 
-	c1.swap(c2);
-	swap(c1, c2);
+    c1.swap(c2);
+    swap(c1, c2);
 
 - swap交换元素很快，因为元素本身没有交换，swap只是交换了两个容器的内部数据结构
 - array是个例外，swap真正交换元素，所以交换所需时间与元素数目成正比
@@ -623,10 +623,10 @@ c.push_front(person("zhangsan",10)); // 正确，先构造对象
 
 其中`args`的形式为包括（pos默认为0）
 
-	c, pos ：    pos为开始查找的位置，c是一个字符
-	s2, pos：    s2是字符串
-	cp, pos：    cp是指向c风格的字符串的指针（以'\0'结尾）
-	cp, pos, n： n表示只看前n个字符
+    c, pos ：    pos为开始查找的位置，c是一个字符
+    s2, pos：    s2是字符串
+    cp, pos：    cp是指向c风格的字符串的指针（以'\0'结尾）
+    cp, pos, n： n表示只看前n个字符
 
 搜索失败则返回一个名为`string::npos`的static成员，其值初始化为-1.
 
@@ -665,7 +665,7 @@ c.push_front(person("zhangsan",10)); // 正确，先构造对象
 ##### 定制操作
 ###### lambda表达式
 
-	[捕获列表] (参数列表) -> 返回类型 {函数体};
+    [捕获列表] (参数列表) -> 返回类型 {函数体};
 
 - lambda可以理解成未命名的inline函数
 - 捕获列表：表达式所在函数的局部变量列表，局部变量间以`,`分隔，通常为空。`&`引用捕获，`=`
@@ -684,7 +684,7 @@ cout << f() << endl;
 - 可以看成一个通用的函数适配器
 - bind在绑定过程中都是采用参数拷贝的方式，所以对于需要引用的类型，可以使用`ref`、`cref`函数表示引用（常量c）
 
-	`auto newCallable = bind(callable, arg_list);`
+    `auto newCallable = bind(callable, arg_list);`
 
 `arg_list`中可能包含`_n`这样的名字（n是整数），这些是占位符，表示newCallable的参数。`_n`表示第n个参数。
 ```java
@@ -778,7 +778,7 @@ cout << endl;
 vector<int> vec;
 for (int i=0; i<10; i++) {
     vec.push_back(i);
-	vec.push_back(i);
+    vec.push_back(i);
 }
 
 set<int> iset(vec.cbegin(), vec.cend());  // 10个元素
@@ -796,18 +796,18 @@ set<Class1, decltype(compareClass1)*> cls(compareClass1);
 ```
 ###### 关联容器额外的类型别名
 
-	key_type : 容器的关键字类型
-	value_type : 对于set，与key_type相同；map则是pair<key, value>
-	mapped_type : 关键字关联的类型
+    key_type : 容器的关键字类型
+    value_type : 对于set，与key_type相同；map则是pair<key, value>
+    mapped_type : 关键字关联的类型
 
 ##### 添加元素
 
-	c.insert(v);
-	c.emplace(args);
-	c.insert(iter1, iter2);
-	c.insert(il);  // 花括号列表，返回void
-	c.insert(iter, v); // 迭代器指示搜索新元素存储应该存储的位置。返回一个迭代器，指向具有给定关键字的元素
-	c.emplace(iter, args);
+    c.insert(v);
+    c.emplace(args);
+    c.insert(iter1, iter2);
+    c.insert(il);  // 花括号列表，返回void
+    c.insert(iter, v); // 迭代器指示搜索新元素存储应该存储的位置。返回一个迭代器，指向具有给定关键字的元素
+    c.emplace(iter, args);
 
 **对于不包含重复关键字的容器，添加单一元素的inert和emplace返回一个pair，指示插入操作是否成功。pair的首元素（first）是一个迭代器，指向具有指定关键字的元素；second是一个bool值，指示元素成功插入还是已经存在于容器中，成功插入为true，否则为false**。
 ```java
@@ -818,11 +818,11 @@ if (!ret.second) // 元素已经存在map中
 
 ##### 访问元素
 
-	c.find(k);  // 返回指向第一个key为k的迭代器
-	c.count(k);  // 返回关键字k的个数
-	c.lower_bound(k); // 返回一个迭代器，指向第一个关键字不小于k的元素
-	c.upper_bound(k);  // 返回一个迭代器，指向第一个关键字大于k的元素
-	c.equal_range(k);   //  返回一个迭代器pair，表示关键字等于k的元素的范围。如不存在，则pair的两个成员均为c.end()
+    c.find(k);  // 返回指向第一个key为k的迭代器
+    c.count(k);  // 返回关键字k的个数
+    c.lower_bound(k); // 返回一个迭代器，指向第一个关键字不小于k的元素
+    c.upper_bound(k);  // 返回一个迭代器，指向第一个关键字大于k的元素
+    c.equal_range(k);   //  返回一个迭代器pair，表示关键字等于k的元素的范围。如不存在，则pair的两个成员均为c.end()
 
 `lower_bound`和`upper_bound`只适用于有序容器
 通过下标访问元素返回左值，既可以读，也可以写回
@@ -831,20 +831,20 @@ if (!ret.second) // 元素已经存在map中
 - 无序容器在存储上组织为一组桶，每个桶保存0个或多个元素
 - 无序容器的性能依赖于哈希函数的质量和桶的大小
 
-	c.bucket_count();  // 正在使用的桶数目
-	c.max_bucket_count();  // 容器能容纳的最多的桶的数量
-	c.bucket_size(n);  // 第n个桶中有多少个元素
-	c.bucket(k);  //  关键字为k的元素在哪个桶中
-	
-	local_iterator       // 访问桶中元素的迭代器
-	const_local_iterator   //  const版本
-	c.begin(n), c.end(n)   //  桶n元素的首、尾迭代器
-	c.cbegin(n), c.cend(n)
-	
-	c.load_factor();   //  每个桶的平均元素数量，float类型
-	c.max_load_factor();  // 最大平均桶元素数量，每个桶的平均元素数量大于这个值就需要添加新的桶
-	c.rehash(n);    //  重组存储，使得bucket_count >= n且bucket_count>size/max_load_factor
-	c.reserve(n);   //  重组存储，使得c可以保存n个元素且不必rehash
+    c.bucket_count();  // 正在使用的桶数目
+    c.max_bucket_count();  // 容器能容纳的最多的桶的数量
+    c.bucket_size(n);  // 第n个桶中有多少个元素
+    c.bucket(k);  //  关键字为k的元素在哪个桶中
+    
+    local_iterator       // 访问桶中元素的迭代器
+    const_local_iterator   //  const版本
+    c.begin(n), c.end(n)   //  桶n元素的首、尾迭代器
+    c.cbegin(n), c.cend(n)
+    
+    c.load_factor();   //  每个桶的平均元素数量，float类型
+    c.max_load_factor();  // 最大平均桶元素数量，每个桶的平均元素数量大于这个值就需要添加新的桶
+    c.rehash(n);    //  重组存储，使得bucket_count >= n且bucket_count>size/max_load_factor
+    c.reserve(n);   //  重组存储，使得c可以保存n个元素且不必rehash
 
 ###### 无序容器对关键字的要求
 - 无序容器使用`==`运算符比较元素

@@ -22,7 +22,7 @@ public byte[] functionName (ClassType sample) {
         System.out.println("...serialization failed.");
     }
     return null;
-}	
+}    
 ```
 - 反序列化
 ```java

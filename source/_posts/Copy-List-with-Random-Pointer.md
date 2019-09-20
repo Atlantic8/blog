@@ -11,11 +11,11 @@ A linked list is given such that each node contains an additional random pointer
 Return a deep copy of the list.
 节点的数据结构如下：
 
-	class RandomListNode {
-		int label;
-		RandomListNode next, random;
-		RandomListNode(int x) { this.label = x;}
-	};
+    class RandomListNode {
+        int label;
+        RandomListNode next, random;
+        RandomListNode(int x) { this.label = x;}
+    };
 
 ##### Solution
 本题的naive思想如下：
@@ -25,47 +25,47 @@ Return a deep copy of the list.
 
 ```java
 public RandomListNode copyRandomList(RandomListNode head) {
-	RandomListNode iter = head, next;
+    RandomListNode iter = head, next;
 
-	// 在原链表上每个节点后一位创建copy
-	while (iter != null) {
-		next = iter.next;
+    // 在原链表上每个节点后一位创建copy
+    while (iter != null) {
+        next = iter.next;
 
-		RandomListNode copy = new RandomListNode(iter.label);
-		iter.next = copy;
-		copy.next = next;
+        RandomListNode copy = new RandomListNode(iter.label);
+        iter.next = copy;
+        copy.next = next;
 
-		iter = next;
-	}
+        iter = next;
+    }
 
-	// random指针设置
-	iter = head;
-	while (iter != null) {
-		if (iter.random != null) {
-			iter.next.random = iter.random.next;
-		}
-		iter = iter.next.next;
-	}
+    // random指针设置
+    iter = head;
+    while (iter != null) {
+        if (iter.random != null) {
+            iter.next.random = iter.random.next;
+        }
+        iter = iter.next.next;
+    }
 
-	// 还原原来的list，提取复制的list
-	iter = head;
-	RandomListNode pseudoHead = new RandomListNode(0);
-	RandomListNode copy, copyIter = pseudoHead;
+    // 还原原来的list，提取复制的list
+    iter = head;
+    RandomListNode pseudoHead = new RandomListNode(0);
+    RandomListNode copy, copyIter = pseudoHead;
 
-	while (iter != null) {
+    while (iter != null) {
 
-		// extract the copy
-		copy = iter.next;
-		copyIter.next = copy;
-		copyIter = copy;
+        // extract the copy
+        copy = iter.next;
+        copyIter.next = copy;
+        copyIter = copy;
 
-		// restore the original list
+        // restore the original list
         next = iter.next.next;
-		iter.next = next;
+        iter.next = next;
 
-		iter = next;
-	}
+        iter = next;
+    }
 
-	return pseudoHead.next;
+    return pseudoHead.next;
 }
 ```

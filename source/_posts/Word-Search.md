@@ -10,17 +10,17 @@ Given a 2D board and a word, find if the word exists in the grid.
 
 The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. <b>The same letter cell may not be used more than once.</b>
 
-	For example,
-	Given board =
+    For example,
+    Given board =
 
-	[
-  	['A','B','C','E'],
-  	['S','F','C','S'],
-  	['A','D','E','E']
-	]
-	word = "ABCCED", -> returns true,
-	word = "SEE", -> returns true,
-	word = "ABCB", -> returns false.
+    [
+      ['A','B','C','E'],
+      ['S','F','C','S'],
+      ['A','D','E','E']
+    ]
+    word = "ABCCED", -> returns true,
+    word = "SEE", -> returns true,
+    word = "ABCB", -> returns false.
 
 
 解题思路
@@ -31,16 +31,16 @@ The word can be constructed from letters of sequentially adjacent cell, where "a
 #### Word Search
 在上一题的基础上，给定一个单词集合words，找到words中的能由board构建的全部单词。对每个单词，假设board的每个格子只能用1次。
 
-	For example,
-	Given words = ["oath","pea","eat","rain"] and board =
+    For example,
+    Given words = ["oath","pea","eat","rain"] and board =
 
-	[
-  	['o','a','a','n'],
-  	['e','t','a','e'],
-  	['i','h','k','r'],
-  	['i','f','l','v']
-	]
-	Return ["eat","oath"].
+    [
+      ['o','a','a','n'],
+      ['e','t','a','e'],
+      ['i','h','k','r'],
+      ['i','f','l','v']
+    ]
+    Return ["eat","oath"].
 
 解题思路
 - 还是要用dfs的思想

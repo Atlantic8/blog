@@ -34,9 +34,9 @@ BM算法是一种使用了两个跳转表的字符串匹配算法，单模式匹
 // m为模式串长度
 void get_bad (const char* P, int m, int* bad) {
     for (int i=0; i<256; i++)
-	     bad[i] = m;
+         bad[i] = m;
     for (int i=0; i<m; i++)
-	    bad[P[i]] = m-i-1;
+        bad[P[i]] = m-i-1;
 }
 ```
 
@@ -70,7 +70,7 @@ void suffixes(const char *P, int m, int *suff) {
 ```java
 void get_good(const char *P, int m, int bmGs[]) {
     int i, j, suff[256];
-	suffixes(x, m, suff);
+    suffixes(x, m, suff);
     // 第三种情况
     for (i = 0; i < m; ++i)
         good[i] = m;
@@ -100,17 +100,17 @@ void BM(char *P, int m, char *S, int n) {
     j = 0;
     while (j <= n - m) {
         while (i!=0 && P[i]==S[j]) {  // 从后向前匹配、直到找到不匹配或者完全匹配
-		    --i;
-			--j;
-		}
-		// 找到一个匹配
-		if (i==0 && P[i]==S[j]) {
-		    m++;
-			j += good[0];  // 找到匹配算是好后缀情况
-		} else {
-		    j += good[i]>bad[S[j]] ? good[i] : bad[S[j]];
-		}
-		i = m-1;
+            --i;
+            --j;
+        }
+        // 找到一个匹配
+        if (i==0 && P[i]==S[j]) {
+            m++;
+            j += good[0];  // 找到匹配算是好后缀情况
+        } else {
+            j += good[i]>bad[S[j]] ? good[i] : bad[S[j]];
+        }
+        i = m-1;
    }
 }
 ```

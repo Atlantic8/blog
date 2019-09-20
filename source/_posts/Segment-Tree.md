@@ -17,21 +17,21 @@ categories: Algorithm
 
 ###### 动态结构
 
-	struct node{
- 		node* left;
- 		node* right;
-		……
-	}
+    struct node{
+         node* left;
+         node* right;
+        ……
+    }
 
 动态结构的方法在Range Sum Query中。
 
 静态数组型结构：maxn是最大区间数，而节点数要开4倍多
 
-	struct node{
-  		int left;
-  		int right;
-		……
-	}Tree[maxn*4+5]
+    struct node{
+          int left;
+          int right;
+        ……
+    }Tree[maxn*4+5]
 
 使用静态数组结构（从1开始计数），left、right表示其左右孩子在数组中对应的位置，如果当前节点的位置时i，那么左孩子2*i，右孩子2*i+1。
 
@@ -98,7 +98,7 @@ left,right：当前节点的表示范围
 ind,add：将原数组中ind位置元素增加add
 */
 void Updata(int node, int left, int right, int ind, int add) {
-	// 当前是叶节点了，直接更新
+    // 当前是叶节点了，直接更新
     if( begin == end ) {
         segTree[node] += add;
         return ;
@@ -134,8 +134,8 @@ Note:
 
 ```java
 public class NumArray {
-	SegmentTreeNode root = null;
-	// 线段树的节点，包含左右孩子，和其全部孩子值的和
+    SegmentTreeNode root = null;
+    // 线段树的节点，包含左右孩子，和其全部孩子值的和
     class SegmentTreeNode {
         int sum;
         int start, end;

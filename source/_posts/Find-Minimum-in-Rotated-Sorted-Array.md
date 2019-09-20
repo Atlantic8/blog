@@ -25,20 +25,20 @@ You may assume no duplicate exists in the array.
 
 ```java
 int findMin(vector<int> &num) {
-	int start=0,end=num.size()-1;
+    int start=0,end=num.size()-1;
 
-	while (start<end) {
-		if (num[start] < num[end])
-        	return num[start];
+    while (start<end) {
+        if (num[start] < num[end])
+            return num[start];
         int mid = start+(end-start)/2;
         if (num[mid] > num[start]) {
-			start = mid+1;
-		} else {
-			end = mid;
-		}
-	}
+            start = mid+1;
+        } else {
+            end = mid;
+        }
+    }
 
-	return num[start];
+    return num[start];
 }
 ```
 
@@ -75,16 +75,16 @@ public:
 ###### 二叉搜索的标准写法
 ```java
 int binary_search(int *a, int left, int right, int target) {
-	// 循环结束判断
+    // 循环结束判断
     while (left <= right) {
-    	int mid = left + (right-left)/2;
+        int mid = left + (right-left)/2;
         if (a[mid] == target)
-        	return mid;
+            return mid;
         // 如果left=2, right=3,并且a[2]<target是将陷入死循环
         if (a[mid] < target)
-        	left = mid+1;
+            left = mid+1;
         else
-        	right = mid-1;
+            right = mid-1;
     }
 
 }

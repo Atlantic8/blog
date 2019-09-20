@@ -33,7 +33,7 @@ X 表示随机变量，服从概率分布 p(x), 那么要计算 f(x) 的期望�
 
 经过迭代，三种阶层的状态converge to
 
-	[0.286, 0.489, 0.225]
+    [0.286, 0.489, 0.225]
 
 <b>马氏链定理</b>
 <center>![](http://ww1.sinaimg.cn/large/9bcfe727jw1f9u72rq6c8j20fa0btwfv.jpg)</center>

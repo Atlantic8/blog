@@ -47,27 +47,27 @@ master(A):
 
 ```java
 public Class Solution {
-	public List<Integer> majorityElement(int[] nums) {
-		List<Integer> ret = new ArrayList<Integer>();
-		if (nums.length == 0) return ret;
-		int cand1=0,cand2=0,count1=0,count2=0;
-    	for (int i=0; i<nums.length; i++) {
-        	// if elseif可以防止cand1,cand2相同
-        	if (nums[i] == cand1) ++count1;
-        	else if (nums[i] == cand2) ++count2;
-        	else if (count1 == 0) { cand1 = nums[i]; count1 = 1; }
-        	else if (count2 == 0) { cand2 = nums[i]; count2 = 1; }
-        	else { --count1; --count2; }
-    	}
-    	count1=0; count2=0;
-    	// 判断候选元素数目是否满足条件
-    	for (int i=0; i < nums.length; i++) {
-        	if (nums[i] == cand1) ++count1;
-        	else if (nums[i] == cand2) ++count2;
-    	}
-    	if (count1 > nums.length/3) ret.add(cand1);
-    	if (count2 > nums.length/3) ret.add(cand2);
-    	return ret;
-	}
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> ret = new ArrayList<Integer>();
+        if (nums.length == 0) return ret;
+        int cand1=0,cand2=0,count1=0,count2=0;
+        for (int i=0; i<nums.length; i++) {
+            // if elseif可以防止cand1,cand2相同
+            if (nums[i] == cand1) ++count1;
+            else if (nums[i] == cand2) ++count2;
+            else if (count1 == 0) { cand1 = nums[i]; count1 = 1; }
+            else if (count2 == 0) { cand2 = nums[i]; count2 = 1; }
+            else { --count1; --count2; }
+        }
+        count1=0; count2=0;
+        // 判断候选元素数目是否满足条件
+        for (int i=0; i < nums.length; i++) {
+            if (nums[i] == cand1) ++count1;
+            else if (nums[i] == cand2) ++count2;
+        }
+        if (count1 > nums.length/3) ret.add(cand1);
+        if (count2 > nums.length/3) ret.add(cand2);
+        return ret;
+    }
 }
 ```

@@ -9,8 +9,8 @@ categories: OJ
 Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
 
 
-	For example
-	Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
+    For example
+    Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
 
 ![](http://ww3.sinaimg.cn/mw690/9bcfe727jw1f8e0cp2n0rj20bg04h3yf.jpg)
 The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image!
@@ -19,8 +19,8 @@ The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In th
 - 双指针，分别指向数组两端，主要是由两边到中间的思想
 - 维护左边最高、右边最高的值
 - 如果: a[left] < a[right]，先处理left-side [ 否则，right-side。这样保证未被处理的一边总有大于另一边最大值的元素。]
-	- 假如a[left] >= maxleft, 那么: maxleft = a[left]
-	- 否则：ret += maxleft-a[left]. 因为右边总有比maxleft大的，否则，不可能处理left这边的数。
+    - 假如a[left] >= maxleft, 那么: maxleft = a[left]
+    - 否则：ret += maxleft-a[left]. 因为右边总有比maxleft大的，否则，不可能处理left这边的数。
 
 ```java
 class Solution {
@@ -30,9 +30,9 @@ public:
         int res=0;
         int maxleft=0, maxright=0;
         while(left<=right){
-        	// 先处理小的一方，保证对面方总有更大的数
+            // 先处理小的一方，保证对面方总有更大的数
             if(A[left]<=A[right]){
-            	// 更新最大值
+                // 更新最大值
                 if(A[left]>=maxleft) maxleft=A[left];
                 // 因为另一边总有大于maxleft的值，所以，此时可盛水maxleft-A[left]
                 else res+=maxleft-A[left];
@@ -54,16 +54,16 @@ Given an m x n matrix of positive integers representing the height of each unit 
 Note:
 Both m and n are less than 110. The height of each unit cell is greater than 0 and is less than 20,000.
 
-	Example:
+    Example:
 
-	Given the following 3x6 height map:
-	[
-  		[1,4,3,1,3,2],
-  		[3,2,1,3,2,4],
-  		[2,3,3,2,3,1]
-	]
+    Given the following 3x6 height map:
+    [
+          [1,4,3,1,3,2],
+          [3,2,1,3,2,4],
+          [2,3,3,2,3,1]
+    ]
 
-	Return 4.
+    Return 4.
 
 ![](http://ww1.sinaimg.cn/mw690/9bcfe727jw1f8e0cossfsj20dw08cjrl.jpg)
 The above image represents the elevation map [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]

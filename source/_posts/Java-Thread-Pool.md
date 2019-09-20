@@ -37,7 +37,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 3 `keepAliveTime` : 线程没有任务执行时最多保持多久时间会终止。默认情况下，只有当线程池中的线程数大于`corePoolSize`时，`keepAliveTime`才会起作用，直到线程池中的线程数不大于`corePoolSize`，即当线程池中的线程数大于`corePoolSize`时，如果一个线程空闲的时间达到`keepAliveTime`，则会终止，直到线程池中的线程数不超过`corePoolSize`。但是如果调用了`allowCoreThreadTimeOut(boolean)`方法，在线程池中的线程数不大于`corePoolSize`时，`keepAliveTime`参数也会起作用，直到线程池中的线程数为0。
 4 `unit` : `keepAliveTime`的时间单位. 包括
 
-	TimeUnit.DAYS
+    TimeUnit.DAYS
     TimeUnit.HOURS
     TimeUnit.MINUTES
     TimeUnit.SECONDS
@@ -47,7 +47,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 5 `workQueue` : 一个阻塞队列，用来存储等待执行的任务。可以是如下三种，其中`ArrayBlockingQueue`和`PriorityBlockingQueue`使用较少，一般使用`LinkedBlockingQueue`和`Synchronous`。线程池的排队策略与BlockingQueue有关。
 
-	ArrayBlockingQueue：基于数组的先进先出队列，此队列创建时必须指定大小
+    ArrayBlockingQueue：基于数组的先进先出队列，此队列创建时必须指定大小
     LinkedBlockingQueue：基于链表的先进先出队列，如果创建时没有指定此队列大小，则默认为Integer.MAX_VALUE
     SynchronousQueue：不会保存提交的任务，而是将直接新建一个线程来执行新来的任务
     PriorityBlockingQueue
@@ -55,10 +55,10 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 6 `threadFactory` ：线程工厂，主要用来创建线程
 7 `handler` ：表示当拒绝处理任务时的策略，可以是
 
-	ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常
-	ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常
-	ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
-	ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
+    ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常
+    ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常
+    ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
+    ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
 
 ---
 
@@ -92,10 +92,10 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 `ThreadPoolExecutor`中定义了一个`volatile`变量`volatile int runState`表示当前线程池的状态，它是一个volatile变量用来保证线程之间的可见性。还有几个`static final`变量表示`runState`可能的几个取值：
 
-	static final int RUNNING    = 0;
-	static final int SHUTDOWN   = 1;
-	static final int STOP       = 2;
-	static final int TERMINATED = 3;
+    static final int RUNNING    = 0;
+    static final int SHUTDOWN   = 1;
+    static final int STOP       = 2;
+    static final int TERMINATED = 3;
 
 创建线程池后，初始时，线程池处于`RUNNING`状态。
 调用了`shutdown()`方法，则线程池处于`SHUTDOWN`状态，此时线程池不能够接受新的任务，它会等待所有任务执行完毕。
@@ -164,7 +164,7 @@ private boolean addIfUnderCorePoolSize(Runnable firstTask) {
         if (poolSize < corePoolSize && runState == RUNNING)
             t = addThread(firstTask);        //创建线程去执行firstTask任务
         } finally {
-        	mainLock.unlock();
+            mainLock.unlock();
     }
     if (t == null)
         return false;
@@ -238,8 +238,8 @@ public int prestartAllCoreThreads() {
 
 ###### 容量的动态调整
 
-	setCorePoolSize：设置核心池大小
-	setMaximumPoolSize：设置线程池最大能创建的线程数目大小
+    setCorePoolSize：设置核心池大小
+    setMaximumPoolSize：设置线程池最大能创建的线程数目大小
 
 ---
 

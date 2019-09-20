@@ -404,10 +404,10 @@ data[:,2] # 二层取值
 # stack是unstack的逆操作
 data.unstack()
 $->           1         2         3
-	a  0.506070 -2.293016  1.391751
-	b -1.218733  0.390983  1.462456
-	c  0.162262 -0.091724       NaN
-	d       NaN  0.321799  0.203933
+    a  0.506070 -2.293016  1.391751
+    b -1.218733  0.390983  1.462456
+    c  0.162262 -0.091724       NaN
+    d       NaN  0.321799  0.203933
 
 # DataFrame可以使用分层索引
 frame = DataFrame(np.arange(12).reshape((4,3)),index=[['a','a','b','b'],[1,2,1,2]],columns=[['Ohis','Ohis','Colorado'],['Green','Red','Green']])
@@ -425,22 +425,22 @@ $-> state      Ohis     Colorado
 ```python
 frame.swaplevel('key1','key2')
 $-> state      Ohis     Colorado
-	color     Green Red    Green
-	key2 key1
-	1    a        0   1        2
-	2    a        3   4        5
-	1    b        6   7        8
-	2    b        9  10       11
+    color     Green Red    Green
+    key2 key1
+    1    a        0   1        2
+    2    a        3   4        5
+    1    b        6   7        8
+    2    b        9  10       11
 ```
 根据级别汇总统计
 ```python
 # 如果对列计数，需要设置axis=1
 frame.sum(level='key2')
 $-> state  Ohis     Colorado
-	color Green Red    Green
-	key2
-	1         6   8       10
-	2        12  14       16
+    color Green Red    Green
+    key2
+    1         6   8       10
+    2        12  14       16
 frame.sum(level='color',axis=1)
 $-> color      Green  Red
     key1 key2

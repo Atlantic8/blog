@@ -8,16 +8,16 @@ categories: OJ
 ###### 题目描述
 给定数组nums和滑动窗口长度k，求滑动窗口由左向右滑动时**窗口内元素的中位数**。
 
-	Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
+    Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
 
-	Window position                Median
-	---------------               -----
-	[1  3  -1] -3  5  3  6  7       1
-	 1 [3  -1  -3] 5  3  6  7       -1
-	 1  3 [-1  -3  5] 3  6  7       -1
-	 1  3  -1 [-3  5  3] 6  7       3
-	 1  3  -1  -3 [5  3  6] 7       5
-	 1  3  -1  -3  5 [3  6  7]      6
+    Window position                Median
+    ---------------               -----
+    [1  3  -1] -3  5  3  6  7       1
+     1 [3  -1  -3] 5  3  6  7       -1
+     1  3 [-1  -3  5] 3  6  7       -1
+     1  3  -1 [-3  5  3] 6  7       3
+     1  3  -1  -3 [5  3  6] 7       5
+     1  3  -1  -3  5 [3  6  7]      6
 
 ###### 解题思路
 容易想到用set的思想，由于数组可能会有重复，所以使用的数据结构为`multiset`。思想如下：
@@ -26,20 +26,20 @@ categories: OJ
 
 ```java
 vector<double> medianSlidingWindow(vector<int>& nums, int k) {
-	multiset<int> ms(nums.begin(), nums.begin()+k);
-	vector<double> ret;
-	for (int i=k; i<=nums.size(); i++) {
-	    // k/2处，基数数组正好是中位数，偶数数组则是中间偏右的那一个
-	    auto mid = next(ms.begin(), k/2);
-		if (k % 2 == 0) ret.push_back((double(*mid) + *prev(mid))/2.0);
-		else ret.push_back(*mid);
-		if (i == nums.size()) break;
-		ms.insert(nums[i]);
-		// 删除要用迭代器，否则将会删除所有值相同的元素
-		// lower_bound取到值相同的最左边的元素
-		ms.erase(ms.lower_bound(nums[i-k]));
-	}
-	return ret;
+    multiset<int> ms(nums.begin(), nums.begin()+k);
+    vector<double> ret;
+    for (int i=k; i<=nums.size(); i++) {
+        // k/2处，基数数组正好是中位数，偶数数组则是中间偏右的那一个
+        auto mid = next(ms.begin(), k/2);
+        if (k % 2 == 0) ret.push_back((double(*mid) + *prev(mid))/2.0);
+        else ret.push_back(*mid);
+        if (i == nums.size()) break;
+        ms.insert(nums[i]);
+        // 删除要用迭代器，否则将会删除所有值相同的元素
+        // lower_bound取到值相同的最左边的元素
+        ms.erase(ms.lower_bound(nums[i-k]));
+    }
+    return ret;
 }
 ```
 时间复杂度为`O(kn)`。
@@ -49,8 +49,8 @@ vector<double> medianSlidingWindow(vector<int>& nums, int k) {
 **更好的方法**
 - 使用一个指针mid用以指向median值（基数指向中间那个元素、偶数指向中间两个元素的后一个）。
 - 向window中加入/删除元素时，考虑两边比较麻烦（没做对==!）。这里的做法是**保证mid左边的元素个数不变，不管右侧如何**，这样结束后还是mid该在的位置
-	- 添加元素时，如果添加的元素在mid左边，mid左移一位
-	- 删除元素时，如果删除的元素在mid左边，mid右移一位
+    - 添加元素时，如果添加的元素在mid左边，mid左移一位
+    - 删除元素时，如果删除的元素在mid左边，mid右移一位
 
 
 ```java
@@ -69,14 +69,14 @@ vector<double> medianSlidingWindow(vector<int>& nums, int k) {
 
         // Insert nums[i].
         window.insert(nums[i]);
-		// 只保证左边的元素个数不变，右边不用管
-		// 如果新插入的在左边，则左移一位，保证左边元素数量不变
+        // 只保证左边的元素个数不变，右边不用管
+        // 如果新插入的在左边，则左移一位，保证左边元素数量不变
         if (nums[i] < *mid)
             mid--;
 
         // Erase nums[i-k].
-		// 只保证左边的元素个数不变，右边不用管
-		// 如果删除的在左边，右移一位保证左边的元素个数不变
+        // 只保证左边的元素个数不变，右边不用管
+        // 如果删除的在左边，右移一位保证左边的元素个数不变
         if (nums[i-k] <= *mid)
             mid++;
         window.erase(window.lower_bound(nums[i-k]));
@@ -97,11 +97,11 @@ vector<double> medianSlidingWindow(vector<int>& nums, int k) {
 
 ```java
 priority_queue<int> left;
-    priority_queue<int> right;
-    MedianFinder() {}
+priority_queue<int> right;
+MedianFinder() {}
     
 void addNum(int num) {
-	left.push(num); // push到左侧
+    left.push(num); // push到左侧
     right.push(-left.top()); // 左侧的最大值push到右侧
     left.pop();
     if (left.size() < right.size()) { // 确保左右两边的数量关系

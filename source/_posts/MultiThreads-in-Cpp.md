@@ -161,9 +161,9 @@ std::future_status status;
 ```java
 std::promise<int> pr;
     std::thread t (
-		[] (std::promise<int>& p) { p.set_value_at_thread_exit(9); } ,
-		std::ref(pr)
-	);
+        [] (std::promise<int>& p) { p.set_value_at_thread_exit(9); } ,
+        std::ref(pr)
+    );
     std::future<int> f = pr.get_future();
     auto r = f.get();
 ```
@@ -178,8 +178,8 @@ std::promise<int> pr;
 - promise 对象可以保存某一类型 T 的值，该值可被 future 对象读取（可能在另外一个线程中），因此 promise 也提供了一种线程同步的手段
 - 在 promise 对象构造时可以和一个共享状态（通常是std::future）相关联，并可以在相关联的共享状态(std::future)上保存一个类型为 T 的值。
 - 可以通过 `get_future` 来获取与该 promise 对象相关联的 future 对象，调用该函数之后，两个对象共享相同的共享状态
-	- promise 对象是异步 Provider，它可以在某一时刻设置共享状态的值
-	- future 对象可以异步返回共享状态的值，或者在必要的情况下阻塞调用者并等待共享状态标志变为 ready，然后才能获取共享状态的值
+    - promise 对象是异步 Provider，它可以在某一时刻设置共享状态的值
+    - future 对象可以异步返回共享状态的值，或者在必要的情况下阻塞调用者并等待共享状态标志变为 ready，然后才能获取共享状态的值
 - promise对象可以通过`set_value`函数设置共享状态的值
 - `std::promise::set_value_at_thread_exit` : 设置共享状态的值，但是不将共享状态的标志设置为 ready，当线程退出时该 promise 对象会自动设置为 ready
 
@@ -254,13 +254,13 @@ auto r1 = f1.get();
 **第二个参数是线程函数，第三个参数是线程函数的参数.**
 ```java
 std::future<int> f1 = std::async(
-	std::launch::async,
-	[]() {return 8;}
+    std::launch::async,
+    []() {return 8;}
 );
 std::future<int> f2 = std::async(
-	std::launch::async,
-	[](int x) {return 8+x;},
-	100
+    std::launch::async,
+    [](int x) {return 8+x;},
+    100
 );
 ```
 

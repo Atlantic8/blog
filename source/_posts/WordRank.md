@@ -93,18 +93,18 @@ $$
 
 - 学习率$\eta$
 - 重复
-	- **阶段 1**
-	- 重复
-		- 从$\Omega$中均匀采样$(w,c)$
-		- 从$C-\lbrace c\rbrace$中均匀采样$(c^{'})$
-		- // update
-		- $u_w\gets u_w-\eta\cdot r_{w,c}\cdot \rho'(\xi_{w,c})\cdot l(\langle u_w, v_c-v_{c^{'}}\rangle) \cdot (v_c-v_{c^{'}})$
-		- $v_c\gets v_c-\eta\cdot r_{w,c}\cdot \rho'(\xi_{w,c})\cdot l(\langle u_w, v_c-v_{c^{'}}\rangle) \cdot u_w$
-		- $v_{c^{'}}\gets v_{c^{'}}-\eta\cdot r_{w,c}\cdot \rho'(\xi_{w,c})\cdot l(\langle u_w, v_c-v_{c^{'}}\rangle) \cdot u_w$
-	- 直到$U$和$V$都收敛
-	- **阶段2**
-	- 对所有的$(w,c)\in \Omega$
-		- $\xi_{w,c}=\left( \sum_{c^{'}\in C-\lbrace c\rbrace} l(\langle u_w, v_c-v_{c^{'}}\rangle)+\beta \right)/\alpha$
+    - **阶段 1**
+    - 重复
+        - 从$\Omega$中均匀采样$(w,c)$
+        - 从$C-\lbrace c\rbrace$中均匀采样$(c^{'})$
+        - // update
+        - $u_w\gets u_w-\eta\cdot r_{w,c}\cdot \rho'(\xi_{w,c})\cdot l(\langle u_w, v_c-v_{c^{'}}\rangle) \cdot (v_c-v_{c^{'}})$
+        - $v_c\gets v_c-\eta\cdot r_{w,c}\cdot \rho'(\xi_{w,c})\cdot l(\langle u_w, v_c-v_{c^{'}}\rangle) \cdot u_w$
+        - $v_{c^{'}}\gets v_{c^{'}}-\eta\cdot r_{w,c}\cdot \rho'(\xi_{w,c})\cdot l(\langle u_w, v_c-v_{c^{'}}\rangle) \cdot u_w$
+    - 直到$U$和$V$都收敛
+    - **阶段2**
+    - 对所有的$(w,c)\in \Omega$
+        - $\xi_{w,c}=\left( \sum_{c^{'}\in C-\lbrace c\rbrace} l(\langle u_w, v_c-v_{c^{'}}\rangle)+\beta \right)/\alpha$
 - 直到所有的$U,V,\Xi$都收敛
 
 ---

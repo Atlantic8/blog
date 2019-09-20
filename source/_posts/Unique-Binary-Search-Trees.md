@@ -62,7 +62,7 @@ Given n = 3, there are a total of 5 unique BST's.
 
 ```java
 public List<TreeNode> generateTrees(int n) {
-	return generateSubtrees(1, n);
+    return generateSubtrees(1, n);
 }
 
 private List<TreeNode> generateSubtrees(int s, int e) {

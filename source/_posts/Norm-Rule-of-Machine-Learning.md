@@ -5,7 +5,7 @@ tags: [machine learning]
 categories: Algorithm
 ---
 
-	L0范数是指向量中非0的元素的个数。
+    L0范数是指向量中非0的元素的个数。
     L1范数是指向量中各个元素绝对值之和，也称为“稀疏规则算子”（Lasso regularization）
     L2范数是指向量各元素的平方和然后求平方根
     核范数是指矩阵奇异值的和
@@ -20,7 +20,7 @@ L0和L1范数都有使得参数变得稀疏的作用，因为L0范数的求解�
 L2范数也是使用颇为广泛的范数，再回归里使用L2范数的叫做<b>“岭回归”</b>
 <b>condition number<b>
 
-	condition number是一个矩阵（或者它所描述的线性系统）的稳定性或者敏感度的度量
+    condition number是一个矩阵（或者它所描述的线性系统）的稳定性或者敏感度的度量
     如果一个矩阵的condition number在1附近，那么它就是well-conditioned的
     如果远大于1，那么它就是ill-conditioned的，如果一个系统是ill-conditioned的
     比如：AX=b方程，稍微改动矩阵A的值，b就有很大变化，那么这个方程是ill-conditioned的

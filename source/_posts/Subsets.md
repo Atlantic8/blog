@@ -13,16 +13,16 @@ Note: The solution set must not contain duplicate subsets. <无重复假设>
 For example,
 If nums = [1,2,3], a solution is:
 
-	[
-  	[3],
-  	[1],
-  	[2],
-  	[1,2,3],
-  	[1,3],
-  	[2,3],
-  	[1,2],
-  	[]
-	]
+    [
+      [3],
+      [1],
+      [2],
+      [1,2,3],
+      [1,3],
+      [2,3],
+      [1,2],
+      []
+    ]
 
 #### Solution
 递归的做法很明显，不赘述了。
@@ -37,13 +37,13 @@ If nums = [1,2,3], a solution is:
 - 所以第j个集合中，第i个元素是否出现可以由 j >> i & 1 决定
 
 下面是例子[1,2,3]
-	[], [], [], [], [], [], [], []
+    [], [], [], [], [], [], [], []
 
-	[], [1], [], [1], [], [1], [], [1]
+    [], [1], [], [1], [], [1], [], [1]
 
-	[], [1], [2], [1, 2], [], [1], [2], [1, 2]
+    [], [1], [2], [1, 2], [], [1], [2], [1, 2]
 
-	[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]
+    [], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]
 
 ```java
 class Solution {
@@ -69,10 +69,10 @@ public:
 public class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
-    	List<List<Integer>> res = new ArrayList<>();
-    	List<Integer> each = new ArrayList<>();
-    	helper(res, each, 0, nums);
-    	return res;
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> each = new ArrayList<>();
+        helper(res, each, 0, nums);
+        return res;
     }
     public void helper(List<List<Integer>> res, List<Integer> each, int pos, int[] n) {
         if (pos <= n.length) {
@@ -103,7 +103,7 @@ vector<vector<int> > subsetsWithDup(vector<int> &S) {
     vector<vector<int>> ret = {{}};
     int size = 0, startIndex = 0;
     for (int i = 0; i < S.size(); i++) {
-    	// startIndex从上一次开始插入的地方开始，不是重复元素则从0开始
+        // startIndex从上一次开始插入的地方开始，不是重复元素则从0开始
         startIndex = i >= 1 && S[i] == S[i - 1] ? size : 0;
         size = ret.size();
         for (int j = startIndex; j < size; j++) {

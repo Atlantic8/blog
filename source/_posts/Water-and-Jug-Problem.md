@@ -17,21 +17,21 @@ Operations allowed:
 - Pour water from one jug into another till the other jug is completely full or the first jug itself is empty.
 
 
-	Example 1: (From the famous "Die Hard" example)
+    Example 1: (From the famous "Die Hard" example)
 
-	Input: x = 3, y = 5, z = 4
-	Output: True
-	Example 2:
+    Input: x = 3, y = 5, z = 4
+    Output: True
+    Example 2:
 
-	Input: x = 2, y = 6, z = 5
-	Output: False
+    Input: x = 2, y = 6, z = 5
+    Output: False
 
 
 ##### Solution
 贝祖等式（Bézout's identity / 定理）：
 对任何整數 a、 b和它们的最大公约数 d，关于未知数 x 和 y 的线性方程（称为贝祖等式）：
 
-	ax + by = m
+    ax + by = m
 
 有整数解时当且仅当m是d的倍数。
 

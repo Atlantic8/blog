@@ -9,7 +9,7 @@ categories: OJ
 ###### H-Index
 维基百科上H-Index的定义如下
 
-	一个科学家的H-Index为h，如果他一共有N篇文章，其中有h篇文章每一篇都至少有h次引用，其他N-h篇论文每一篇都不超过h次引用
+    一个科学家的H-Index为h，如果他一共有N篇文章，其中有h篇文章每一篇都至少有h次引用，其他N-h篇论文每一篇都不超过h次引用
 
 比如给定`citations = [3, 0, 6, 1, 5]`，表示当前研究者有5篇论文，其引用为`citations`中。因为这些论文中有3篇论文每篇都至少有3次引用，其他2篇都没有3次应用，所以他的H-Index为3。
 ###### 题目描述
@@ -25,17 +25,17 @@ categories: OJ
 ```java
 int hIndex(vector<int> & citations) {
     int N = citations.size();
-	if (N == 0) return 0;
-	vector<int> array(N+1, 0);
-	for (int i=0; i<N; i++) {
-	    if (citations[i] > N) array[N]++;
-	    else array[citations[i]]++;
-	}
-	int sum = 0;
-	for (int i=N; i>0; i--) {
-	    sum += array[i];
-	    if (sum >= i) return i;
-	}
+    if (N == 0) return 0;
+    vector<int> array(N+1, 0);
+    for (int i=0; i<N; i++) {
+        if (citations[i] > N) array[N]++;
+        else array[citations[i]]++;
+    }
+    int sum = 0;
+    for (int i=N; i>0; i--) {
+        sum += array[i];
+        if (sum >= i) return i;
+    }
     return 0;
 }
 ```
@@ -50,9 +50,9 @@ int hIndex(vector<int> & citations) {
 
 出现`N-k=citations[k]`直接结束了。否则必然存在k满足`citations[k]<N-k && citations[k+1]>N-k-1`，现在考虑`k,k+1,left,right`最终的可能关系，如下
 
-	| k       k+1    |            k     k+1 |  k    k+1            |  k   k+1                   |                   k    k+1  |
-	| left     right | left    right        |       left     right |              left    right |  left    right               |
-	后面两种情况不可能出现，前三种情况的最终结果都是 `N-left`
+    | k       k+1    |            k     k+1 |  k    k+1            |  k   k+1                   |                   k    k+1  |
+    | left     right | left    right        |       left     right |              left    right |  left    right               |
+    后面两种情况不可能出现，前三种情况的最终结果都是 `N-left`
 
 再来考虑停止条件，两种情况`left=right`或者`left+1=right`。
 1. 当第一种情况出现，`mid=left`，此时如果`citations[mid] > N-mid`，那么`mid=left`就是最佳位置，H-Index为`N-mid`；否则最佳位置在left后一位，此时将`left=mid+1`后，`N-left`就是最佳H-Index。
@@ -61,13 +61,13 @@ int hIndex(vector<int> & citations) {
 ```java
 int hIndex(vector<int>& citations) {
     int N=citations.size(), left=0, right=N-1, ret=0;
-	if (N == 0) return 0;
-	while (left <= right) {
-	    int mid = left + (right-left)/2;
-		if (citations[mid] == N-mid) return N-mid;
-		else if (citations[mid] > N-mid) right = mid-1; // 向左寻找
-		else left = mid+1;                                     // 向右寻找
-	}
-	return N-left;
+    if (N == 0) return 0;
+    while (left <= right) {
+        int mid = left + (right-left)/2;
+        if (citations[mid] == N-mid) return N-mid;
+        else if (citations[mid] > N-mid) right = mid-1; // 向左寻找
+        else left = mid+1;                                     // 向右寻找
+    }
+    return N-left;
 }
 ```

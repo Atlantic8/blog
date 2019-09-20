@@ -55,32 +55,32 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 依旧是DP问题，如果用a[i][j]表示从标号i到j单次最大的利润，代码如下：
 ```java
 public int maxProfit(int[] prices) {
-	int n = prices.length;
-	if (n <= 1)
-		return 0;
-	int[][] minElement=new int[n][n], maxpay=new int[n][n];
-	for (int i=0; i<n; i++) {
-		minElement[i][i] = prices[i];
-		maxpay[i][i] = 0;
-	}
-	for (int len=1; len<n; len++) {
-		for (int i=0; i+len<n; i++) {
-			int j = i+len;
-			if (prices[i]-minElement[i][j-1] > maxpay[i][j-1])
-				maxpay[i][j] = prices[i]-minElement[i][j-1];
-			minElement[i][j] = Math.min(prices[j], minElement[i][j-1]);
-		}
-	}
-	int div = 2, maxprofit = maxpay[0][n-1];
-	if (n <= 3)
-		return maxprofit;
-	for (int i=div; i<n-2; i++) {
-		int x1 = maxpay[0][i];
-		int x2 = maxpay[i][n-1];
-		if (x1+x2 > maxprofit)
-			maxprofit = x1+x2;
-	}
-	return maxprofit;
+    int n = prices.length;
+    if (n <= 1)
+        return 0;
+    int[][] minElement=new int[n][n], maxpay=new int[n][n];
+    for (int i=0; i<n; i++) {
+        minElement[i][i] = prices[i];
+        maxpay[i][i] = 0;
+    }
+    for (int len=1; len<n; len++) {
+        for (int i=0; i+len<n; i++) {
+            int j = i+len;
+            if (prices[i]-minElement[i][j-1] > maxpay[i][j-1])
+                maxpay[i][j] = prices[i]-minElement[i][j-1];
+            minElement[i][j] = Math.min(prices[j], minElement[i][j-1]);
+        }
+    }
+    int div = 2, maxprofit = maxpay[0][n-1];
+    if (n <= 3)
+        return maxprofit;
+    for (int i=div; i<n-2; i++) {
+        int x1 = maxpay[0][i];
+        int x2 = maxpay[i][n-1];
+        if (x1+x2 > maxprofit)
+            maxprofit = x1+x2;
+    }
+    return maxprofit;
 }
 ```
 但是，这样时间复杂度为O(n^2)。TLE！！！！！！！！！
@@ -100,27 +100,27 @@ public int maxProfit(int[] prices) {
 ```java
 public class Solution {
     public int maxProfit(int[] prices) {
-		int n = prices.length;
-		if (n <= 1)
-			return 0;
+        int n = prices.length;
+        if (n <= 1)
+            return 0;
         // maxpay[t][i] indicates the max profit in t-th transaction
-		int[][] maxpay=new int[3][n];
-		// initialize maxpay, when t=0, maxpay[t][i]=0
+        int[][] maxpay=new int[3][n];
+        // initialize maxpay, when t=0, maxpay[t][i]=0
         for (int j=0; j<3; j++)
-			for (int i=0; i<n; i++)
-				maxpay[j][i] = 0;
-		for (int t=1; t<3; t++) {
-        	// for every t, initialize t
-			int tmp = maxpay[t-1][0]-prices[0];
-			for (int i=1; i<n; i++) {
-				//iteration formula
-				//maxpay[t][i] = Math.max{ maxpay[t][i-1] , prices[i]+max<j>{maxpay[t-1][j]-prices[j]} };
-				maxpay[t][i] = Math.max(maxpay[t][i-1], prices[i]+tmp);
-				// make sure that tmp = max(tmp , maxpay[t-1][i]-prices[i])
+            for (int i=0; i<n; i++)
+                maxpay[j][i] = 0;
+        for (int t=1; t<3; t++) {
+            // for every t, initialize t
+            int tmp = maxpay[t-1][0]-prices[0];
+            for (int i=1; i<n; i++) {
+                //iteration formula
+                //maxpay[t][i] = Math.max{ maxpay[t][i-1] , prices[i]+max<j>{maxpay[t-1][j]-prices[j]} };
+                maxpay[t][i] = Math.max(maxpay[t][i-1], prices[i]+tmp);
+                // make sure that tmp = max(tmp , maxpay[t-1][i]-prices[i])
                 tmp = Math.max(tmp, maxpay[t-1][i]-prices[i]);
-			}
-		}
-		return maxpay[2][n-1];
+            }
+        }
+        return maxpay[2][n-1];
     }
 }
 ```
@@ -145,7 +145,7 @@ we can apply the algorithm above, but there is one thing to notice,
 
 ```java
 public class Solution {
-	public int maxProfit(int k, int[] prices) {
+    public int maxProfit(int k, int[] prices) {
         int len = prices.length;
         if (k >= len / 2) return quickSolve(prices);
         
@@ -179,11 +179,11 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
 <b>After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)</b>
 
-	Example:
+    Example:
 
-	prices = [1, 2, 3, 0, 2]
-	maxProfit = 3
-	transactions = [buy, sell, cooldown, buy, sell]
+    prices = [1, 2, 3, 0, 2]
+    maxProfit = 3
+    transactions = [buy, sell, cooldown, buy, sell]
 
 ### Solution
 本题中，可能的操作有buy、sell、rest(啥也不干)。可以使用状态机来解题：
@@ -191,9 +191,9 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 ![](http://ww4.sinaimg.cn/mw690/9bcfe727jw1f7xj05lgqrj20e20710t1.jpg)
 转移方程表示如下：
 
-	s0[i] = max(s0[i - 1], s2[i - 1]);
-	s1[i] = max(s1[i - 1], s0[i - 1] - prices[i]);
-	s2[i] = s1[i - 1] + prices[i];
+    s0[i] = max(s0[i - 1], s2[i - 1]);
+    s1[i] = max(s1[i - 1], s0[i - 1] - prices[i]);
+    s2[i] = s1[i - 1] + prices[i];
 
 由于s1状态是买完以后的状态，所以最值最大值肯定不在s1上出现，只要找到最大的s0和s2.
 关于初值设置：
@@ -205,21 +205,21 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 ```java
 class Solution {
 public:
-	int maxProfit(vector<int>& prices){
-		if (prices.size() <= 1) return 0;
-		vector<int> s0(prices.size(), 0);
-		vector<int> s1(prices.size(), 0);
-		vector<int> s2(prices.size(), 0);
-		s1[0] = -prices[0];
-		s0[0] = 0;
-		s2[0] = INT_MIN;
-		for (int i = 1; i < prices.size(); i++) {
-			s0[i] = max(s0[i - 1], s2[i - 1]);
-			s1[i] = max(s1[i - 1], s0[i - 1] - prices[i]);
-			s2[i] = s1[i - 1] + prices[i];
-		}
-		return max(s0[prices.size() - 1], s2[prices.size() - 1]);
-	}
+    int maxProfit(vector<int>& prices){
+        if (prices.size() <= 1) return 0;
+        vector<int> s0(prices.size(), 0);
+        vector<int> s1(prices.size(), 0);
+        vector<int> s2(prices.size(), 0);
+        s1[0] = -prices[0];
+        s0[0] = 0;
+        s2[0] = INT_MIN;
+        for (int i = 1; i < prices.size(); i++) {
+            s0[i] = max(s0[i - 1], s2[i - 1]);
+            s1[i] = max(s1[i - 1], s0[i - 1] - prices[i]);
+            s2[i] = s1[i - 1] + prices[i];
+        }
+        return max(s0[prices.size() - 1], s2[prices.size() - 1]);
+    }
 };
 ```
 
@@ -227,7 +227,7 @@ public:
 
 ```java
 class Solution {
-	int maxProfit(vector<int>& prices) {
+    int maxProfit(vector<int>& prices) {
         if (prices.size() < 2) return 0;
         int s0 = 0, s1 = -prices[0], s2 = 0;
         for (int i = 1; i < prices.size(); ++i) {

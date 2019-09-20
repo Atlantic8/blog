@@ -49,7 +49,7 @@ def median(A, B):
         A, B, m, n = B, A, n, m
     if n == 0:
         raise ValueError
-	# 设置half_len=(m + n + 1) / 2, 保证左边部分总是不小于右边
+    # 设置half_len=(m + n + 1) / 2, 保证左边部分总是不小于右边
     imin, imax, half_len = 0, m, (m + n + 1) / 2
     while imin <= imax:
         i = (imin + imax) / 2
@@ -65,13 +65,13 @@ def median(A, B):
             if i == 0: max_of_left = B[j-1]
             elif j == 0: max_of_left = A[i-1]
             else: max_of_left = max(A[i-1], B[j-1])
-			# 考虑整体是奇数的情况
+            # 考虑整体是奇数的情况
             if (m + n) % 2 == 1:
                 return max_of_left
 
             if i == m: min_of_right = B[j]
             elif j == n: min_of_right = A[i]
             else: min_of_right = min(A[i], B[j])
-			# 考虑整体是偶数的情况
+            # 考虑整体是偶数的情况
             return (max_of_left + min_of_right) / 2.0
 ```

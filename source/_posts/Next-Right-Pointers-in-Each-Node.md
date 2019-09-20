@@ -87,7 +87,7 @@ void connect(TreeLinkNode *root) {
 在二叉树为一般二叉树时，我们就需要考虑节点是否有左孩子，右孩子
 我们引入三个指针now指示当前层最左节点。head和tail，分别表示子层上最左边的节点和当前最右的节点
 
-	1 从根节点开始，设置head = tail = null
+    1 从根节点开始，设置head = tail = null
     2 如果now.left为空，跳过，否则：
         如果tail为空：head = tail = now.left. 表示当找到这一层的头
         否则：tail = tail.next = now.left. 把now.left接到tail上，tail移一位

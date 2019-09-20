@@ -33,20 +33,20 @@ public:
         vector<int> s;
         int ret = 0;
         height.push_back(0);
-		for (int i=0; i<height.size(); i++) {
-			while (s.size()>0 && height[s.back()]>=height[i]) {
-				int h = height[s.back()], sid=0;
-				s.pop_back();
-				if (s.size() == 0)
-					sid = 0;
-				else
-					sid = s.back()+1;
-				if (ret < h*(i-sid))
-					ret = h*(i-sid);
-			}
-			s.push_back(i);
-		}
-		return ret;
+        for (int i=0; i<height.size(); i++) {
+            while (s.size()>0 && height[s.back()]>=height[i]) {
+                int h = height[s.back()], sid=0;
+                s.pop_back();
+                if (s.size() == 0)
+                    sid = 0;
+                else
+                    sid = s.back()+1;
+                if (ret < h*(i-sid))
+                    ret = h*(i-sid);
+            }
+            s.push_back(i);
+        }
+        return ret;
     }
 }
 ```

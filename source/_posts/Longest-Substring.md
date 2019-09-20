@@ -51,7 +51,7 @@ int lengthOfLongestSubstringTwoDistinct(string s) {
     vector<int> map(128, 0);
     int counter=0, begin=0, end=0, d=0;
     while(end<s.size()){
-    	// add a new character
+        // add a new character
         if(map[s[end++]]++==0) counter++;
         // at most 2 distinct characters, so, count <= 2
         // only when map[s[begin]]--==1, we get rid of s[begin] completely
@@ -79,7 +79,7 @@ int lengthOfLongestSubstringKDistinct(string s, int k) {
     vector<int> map(128, 0);
     int counter=0, begin=0, end=0, d=0;
     while(end<s.size()){
-    	// add a new character
+        // add a new character
         if(map[s[end++]]++==0) counter++;
         // at most k distinct characters, so, count <= k
         // only when map[s[begin]]--==1, we get rid of s[begin] completely

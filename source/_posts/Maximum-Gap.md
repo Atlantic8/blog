@@ -31,32 +31,32 @@ public class Solution {
         int N=num.length,bucketSize=0,bucketNum=0,minElement=Integer.MAX_VALUE,maxElement=0;
         // 确定最值
         for (int i=0; i<N; i++) {
-        	minElement = Math.min(minElement, num[i]);
-        	maxElement = Math.max(maxElement, num[i]);
+            minElement = Math.min(minElement, num[i]);
+            maxElement = Math.max(maxElement, num[i]);
         }
         bucketSize = (int)Math.ceil(((double)(maxElement-minElement))/(N-1)); // bucket的大小
         bucketNum  = (int)Math.ceil(((double)(maxElement-minElement))/bucketSize); // bucket数量
         int[] bucketMax = new int[bucketNum+1],bucketMin = new int[bucketNum+1];
         for (int i=0; i<=bucketNum; i++) {
-        	bucketMax[i]=Integer.MIN_VALUE;
-        	bucketMin[i]=Integer.MAX_VALUE;
+            bucketMax[i]=Integer.MIN_VALUE;
+            bucketMin[i]=Integer.MAX_VALUE;
         }
         for (int i=0; i<N; i++) {  //put elements in buckets
-        	if (num[i]==minElement || num[i]==maxElement) // 不加入最值
-        		continue;
-        	int bucketId = (int) Math.ceil(((double)(num[i]-minElement))/bucketSize); // 计算bucket编号
-        	bucketMax[bucketId] = Math.max(num[i], bucketMax[bucketId]);
-        	bucketMin[bucketId] = Math.min(num[i], bucketMin[bucketId]);
+            if (num[i]==minElement || num[i]==maxElement) // 不加入最值
+                continue;
+            int bucketId = (int) Math.ceil(((double)(num[i]-minElement))/bucketSize); // 计算bucket编号
+            bucketMax[bucketId] = Math.max(num[i], bucketMax[bucketId]);
+            bucketMin[bucketId] = Math.min(num[i], bucketMin[bucketId]);
         }
         int maxGap=0, temp=minElement; // temp设置为最小值，可以捕捉最小值和第二小值之间的gap
         // 在bucket之间寻找最大gap
         for (int i=1; i<=bucketNum; i++) {
-        	if (bucketMin[i]==Integer.MAX_VALUE)
-        		continue;
-        	if (maxGap < bucketMin[i]-temp) {
-        		maxGap = bucketMin[i]-temp;
-        	}
-        	temp = bucketMax[i];
+            if (bucketMin[i]==Integer.MAX_VALUE)
+                continue;
+            if (maxGap < bucketMin[i]-temp) {
+                maxGap = bucketMin[i]-temp;
+            }
+            temp = bucketMax[i];
         }
         maxGap = Math.max(maxGap, maxElement-temp); 捕捉最大和第二大值之间的gap
         return maxGap;

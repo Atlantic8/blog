@@ -31,14 +31,14 @@ num[i,j] = min(num[i,k]+num[k+1,j])
 public class Solution {
     public int minCut(String s) {
         int[] num = new int[s.length()+1];
-    	for (int i = 0; i <= s.length(); i++) num[i] = i-1;
+        for (int i = 0; i <= s.length(); i++) num[i] = i-1;
         for (int i = 0; i < s.length(); i++) {
-        	// 奇数回文子串
-        	for (int j=0; i-j>=0 && i+j<s.length() && s.charAt(i-j)==s.charAt(i+j); j++)
-        		num[i+j+1] = Math.min(num[i+j+1], num[i-j]+1);
-        	// 偶数回文子串
-        	for (int j=0; i-j>=0 && i+j+1<s.length() && s.charAt(i-j)==s.charAt(i+j+1); j++)
-        		num[i+j+2] = Math.min(num[i+j+2], num[i-j]+1);
+            // 奇数回文子串
+            for (int j=0; i-j>=0 && i+j<s.length() && s.charAt(i-j)==s.charAt(i+j); j++)
+                num[i+j+1] = Math.min(num[i+j+1], num[i-j]+1);
+            // 偶数回文子串
+            for (int j=0; i-j>=0 && i+j+1<s.length() && s.charAt(i-j)==s.charAt(i+j+1); j++)
+                num[i+j+2] = Math.min(num[i+j+2], num[i-j]+1);
         }
         return num[s.length()];
     }

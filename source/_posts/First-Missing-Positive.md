@@ -8,9 +8,9 @@ categories: OJ
 ##### Problem
 Given an unsorted integer array, find the first missing positive integer.
 
-	For example,
-	Given [1,2,0] return 3,
-	and [3,4,-1,1] return 2.
+    For example,
+    Given [1,2,0] return 3,
+    and [3,4,-1,1] return 2.
 
 Your algorithm should run in <b>O(n) time and uses constant space</b>.
 
@@ -26,10 +26,10 @@ class Solution
 {
 public:
     int firstMissingPositive(int A[], int n) {
-    	// 将数放在正确的地方
+        // 将数放在正确的地方
         for(int i = 0; i < n; ++ i)
             while(A[i] > 0 && A[i] <= n && A[A[i] - 1] != A[i]) swap(A[i], A[A[i] - 1]);
-		// 找到缺失的数
+        // 找到缺失的数
         for(int i = 0; i < n; ++ i)
             if(A[i] != i + 1) return i + 1;
 

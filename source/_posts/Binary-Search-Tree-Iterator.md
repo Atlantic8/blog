@@ -41,7 +41,7 @@ public:
     }
 
 private:
-	// 从root开始不断向左，将遇到的每个节点入栈
+    // 从root开始不断向左，将遇到的每个节点入栈
     void pushAll(TreeNode *node) {
         for (; node != NULL; myStack.push(node), node = node->left);
     }
