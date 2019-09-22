@@ -30,11 +30,11 @@ layout: "page"
 - [Nov 2014], National Encouragement Scholarship for Undergraduate
 
 ### Education
-[Sep 2015 - Mar 2018], Master, Beijing Institute of Technology
+[Sep 2015 - Mar 2018], Master Degree, Beijing Institute of Technology
 - Computer Science and Technology, Advanced Institute of Network and Data Security
 - Beijing, China
 
-[Sep 2011 - Jun 2015], Bachelor, Beijing Institute of Technology
+[Sep 2011 - Jun 2015], Bachelor Degree, Beijing Institute of Technology
 - Computer Science and Technology
 - Beijing, China
 
