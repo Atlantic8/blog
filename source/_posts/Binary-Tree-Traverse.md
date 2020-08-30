@@ -18,13 +18,16 @@ updated
 void preOrder(TreeNode *root) {    //非递归前序遍历
     stack<TreeNode*> s;
     TreeNode *p=root;
-    s.push(p);
-    while(!s.empty()) {
-        p = s.top();
-        s.pop();
-        visit(p);
-        if (p->right) s.push(p->right);
-        if (p->left) s.push(p->left);
+    while (p || !s.empty()) {
+        if (p != NULL) { // 使劲向左
+            visit(p);
+            s.push(p);
+            p = p->left;
+        } else {
+            p = s.top();
+            s.pop();
+            p = p->right;
+        }
     }
 }
 ```
@@ -40,9 +43,9 @@ void preOrder(TreeNode *root) {    //非递归前序遍历
 ```java
 void inOrder(TreeNode *root) {  //非递归中序遍历
     stack<TreeNode*> s;
-    TreeNode *p=root;
-    while (p!=NULL || !s.empty()) {
-        if (p != NULL) {
+    TreeNode *p = root;
+    while (p != NULL || !s.empty()) {
+        if (p != NULL) { // 使劲向左
             s.push(p);
             p = p->left;
         } else {
@@ -57,7 +60,34 @@ void inOrder(TreeNode *root) {  //非递归中序遍历
 
 ##### 后序遍历
 顺序：左、右、中
-一个有用的规则是：**先遍历到的点总是后访问的**
+
+```java
+void postOrder(TreeNode* root) {
+    stack<TreeNode*> s;
+    TreeNode *p = root;
+    TreeNode *pre = NULL; // last visited
+    while (p != NULL || !s.empty()) {
+        if (p != NULL) { // 使劲向左
+            s.push(p);
+            p = p->left;
+        } else {
+            p = s.top();
+            // 右孩子为空或者刚刚访问过了，可以访问当前节点了
+            if (p->right == NULL || pre == p->right) {
+                s.pop();
+                visit(p);
+                pre = p;
+                p = NULL; // 不置空就重复访问了
+            } else { // 否则访问右孩子
+                p = p->right;
+            }
+        }
+    }
+}
+```
+
+另一个方法
+intuition：**先遍历到的点总是后访问的**
 
 ```java
 void postOrder(TreeNode *root) {  //非递归后序遍历
