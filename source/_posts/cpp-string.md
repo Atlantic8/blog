@@ -2,6 +2,7 @@
 title: cpp-string
 date: 2016-05-05 14:54:06
 tags: Cpp
+categories: Dev
 ---
 ## toupper, tolower
 地球人都知道 C++ 的 string 没有 toupper ，好在这不是个大问题，因为我们有 STL 算法：

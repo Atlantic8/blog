@@ -2,7 +2,7 @@
 title: Prime Factor Index in Factorial
 date: 2017-03-18 10:37:24
 tags: [Math]
-categories: Other
+categories: Math
 ---
 
 题目的中文翻译是：阶乘中质因数的指数。

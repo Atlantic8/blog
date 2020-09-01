@@ -2,6 +2,7 @@
 title: matplotlib绘图基本方法
 date: 2016-05-10 09:30:37
 tags: [python]
+categories: Dev
 ---
 ### 设置中文编码
 ```python

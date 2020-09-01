@@ -2,7 +2,7 @@
 title: Java Thread Pool
 date: 2017-01-17 14:43:08
 tags: [Java]
-categories:
+categories: Dev
 ---
 
 ##### ThreadPoolExecutor

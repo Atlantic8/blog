@@ -2,7 +2,7 @@
 title: MultiThreads in Cpp
 date: 2017-06-12 09:41:32
 tags: [Cpp]
-categories:
+categories: Dev
 ---
 
 

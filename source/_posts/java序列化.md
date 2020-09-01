@@ -2,6 +2,7 @@
 title: java序列化
 date: 2016-05-05 15:10:53
 tags: [Java]
+categories: Dev
 ---
 ### 一. 描述
 - 在网络通信和数据存储方面很有用

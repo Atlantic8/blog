@@ -2,7 +2,7 @@
 title: Cpp Rule Fragment2
 date: 2017-03-06 15:28:49
 tags: [Cpp]
-categories:
+categories: Dev
 ---
 
 ##### 左右的概念

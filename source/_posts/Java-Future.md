@@ -2,7 +2,7 @@
 title: Java Future
 date: 2017-01-18 10:25:54
 tags: [Java]
-categories:
+categories: Dev
 ---
 
 ###### Callable与Runnable

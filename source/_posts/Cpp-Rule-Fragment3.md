@@ -2,7 +2,7 @@
 title: Cpp Rule Fragment3
 date: 2017-03-16 10:05:38
 tags: Cpp
-categories:
+categories: Dev
 ---
 
 #### 模板与泛型编程

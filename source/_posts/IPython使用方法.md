@@ -2,6 +2,7 @@
 title: IPython使用方法
 date: 2016-05-11 21:05:36
 tags: [IPython]
+categories: Dev
 ---
 ## IPython的部分功能整理
 #### Tab自动完成

@@ -1,8 +1,8 @@
 ---
 title: Minimum Height Trees
 date: 2016-09-03 14:29:46
-tags:
-categories:
+tags: [Leetcode]
+categories: OJ
 ---
 
 #### Problem

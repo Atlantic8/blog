@@ -2,6 +2,7 @@
 title: python数据加载、存储与文件格式
 date: 2016-06-23 15:37:19
 tags: [python, 文件, pandas]
+categories: Dev
 ---
 ##### csv
 

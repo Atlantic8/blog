@@ -2,6 +2,7 @@
 title: pandas初步
 date: 2016-05-17 22:34:11
 tags: [pandas, python]
+categories: Dev
 ---
 #### Series
 Series类似于一维数组对象，由一组数据和其对应的标签组成，仅由一组数据即可产生简单的Series：

@@ -1,8 +1,8 @@
 ---
 title: Water and Jug Problem
 date: 2016-09-22 14:58:18
-tags:
-categories:
+tags: [LeetCode]
+categories: Algorithm
 ---
 
 ##### Problem

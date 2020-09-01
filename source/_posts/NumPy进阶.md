@@ -2,7 +2,7 @@
 title: NumPy进阶
 date: 2016-08-15 19:03:52
 tags: [python, numpy]
-categories:
+categories: Dev
 ---
 
 ##### 数组重塑

@@ -2,7 +2,7 @@
 title: python数据规整_分组_聚合
 date: 2016-08-15 19:09:26
 tags: [python, 数据分析]
-categories:
+categories: Dev
 ---
 
 #### 数据合并

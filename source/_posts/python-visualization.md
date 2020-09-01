@@ -2,6 +2,7 @@
 title: python visualization
 date: 2016-07-10 22:12:11
 tags: [python, visualization]
+categories: Algorithm
 ---
 
 ## matplotlib

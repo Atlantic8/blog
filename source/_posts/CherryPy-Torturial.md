@@ -3,7 +3,7 @@ title: CherryPy Torturial
 mathjax: true
 date: 2019-09-21 23:51:48
 tags: [python, web]
-categories: Other
+categories: Dev
 ---
 
 python有多种工具包，其中就包括一些可以提供网页服务的package，比如Django、CherryPy等。在不同的情况下一般有不同的选择，比如如果只想是通过浏览器下载服务器上的文件，那么通过SimpleHTTPServer即可

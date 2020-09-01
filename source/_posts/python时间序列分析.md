@@ -2,7 +2,7 @@
 title: python时间序列分析
 date: 2016-08-15 19:06:30
 tags: [python, time_series_data]
-categories:
+categories: Algorithm
 ---
 
 #### 基础工具

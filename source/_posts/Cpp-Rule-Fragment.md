@@ -2,7 +2,7 @@
 title: Cpp Rule Fragment
 date: 2017-02-23 08:50:23
 tags: [Cpp]
-categories:
+categories: Dev
 ---
 
 #### 变量和基本类型

@@ -2,6 +2,7 @@
 title: NumPy基础
 date: 2016-06-23 15:32:40
 tags: [numpy, python]
+categories: Dev
 ---
 
 ```python

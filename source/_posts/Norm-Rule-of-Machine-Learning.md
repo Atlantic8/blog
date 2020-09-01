@@ -2,7 +2,7 @@
 title: Norm Rule of Machine Learning
 date: 2016-11-17 11:05:32
 tags: [machine learning]
-categories: Algorithm
+categories: Math
 ---
 
     L0范数是指向量中非0的元素的个数。

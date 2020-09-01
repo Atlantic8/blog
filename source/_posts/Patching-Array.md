@@ -1,8 +1,8 @@
 ---
 title: Patching Array
 date: 2016-09-05 16:47:55
-tags:
-categories:
+tags: [Leetcode]
+categories: OJ
 ---
 
 #### Problem

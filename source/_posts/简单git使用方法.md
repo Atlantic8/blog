@@ -1,7 +1,8 @@
 ---
 title: 简单git使用方法
 date: 2016-06-08 09:34:40
-tags: [git, github]
+tags: [git]
+categories: Dev
 ---
 
 ##### 查看当前远程库

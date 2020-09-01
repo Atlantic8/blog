@@ -2,6 +2,7 @@
 title: java-matlab2014a混合编程
 date: 2016-05-05 15:16:47
 tags: [Java, Matlab]
+categories: Dev
 ---
 ## 第一步
 - 编写需要调用的matlab函数，可以多个文件一起编译

@@ -2,7 +2,7 @@
 title: DDoS的简单实现
 date: 2016-12-06 10:52:57
 tags: other
-categories:
+categories: Dev
 ---
 
 ##### Scapy实现SYN泛洪攻击
