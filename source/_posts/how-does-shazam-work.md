@@ -2,7 +2,7 @@
 title: how does shazam work
 mathjax: true
 date: 2018-12-16 21:06:11
-tags: [MIR, music information retrieval]
+tags: [MIR, IR]
 categories: Algorithm
 ---
 

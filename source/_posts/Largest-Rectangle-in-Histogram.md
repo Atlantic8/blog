@@ -8,7 +8,7 @@ categories: OJ
 #### Problem
 Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
 
-<center>![](http://ww4.sinaimg.cn/mw690/9bcfe727jw1f7lz38exq2j205805oaab.jpg)</center>
+![示例图](/images/leetcode4_histogram_area.png)
 
 Above is a histogram where width of each bar is 1, given height = [2,1,5,6,2,3].
 The largest rectangle is shown in the shaded area, which has area = 10 unit.

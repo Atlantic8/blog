@@ -6,7 +6,6 @@ layout: "page"
 `Natural Language Processing`, `Machine Learning`, `Deep Learning`, `Information Retrieval`, `Privacy Protection`, `Information Security`
 
 ### Working Experience
-- [Jun 2020 - Aug 2020], **Full Time**, Tencent, Wechat, Machine Learning Engineer, Department of Applied Search 
 - [Apr 2018 - Jun 2020], **Full Time**, Baidu,Inc, Machine Learning & NLP Engineer, Dapartment of Search Strategy
 - [Jul 2017 - Oct 2017], **Intern**, Baidu,Inc, Machine Learning & NLP Engineer, Department of Multi-Modal Search
 
@@ -20,7 +19,7 @@ layout: "page"
 
 
 ### Skills
-- `C/C++`, `Python`, `Java`
+- `C/C++`, `Python`
 - `Data Structure`, `Algorithm`, `Computing Theory`
 - `Statistics`, `Machine Learning`, `Neural Networks`, `NLP`, `IR`
 - `Git`, `Linux`, `Latex`, etc
