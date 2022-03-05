@@ -83,6 +83,6 @@ Plugins:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://Atlantic8:cwq1713321614@github.com/Atlantic8/atlantic8.github.io.git
+  repository: https://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@github.com/Atlantic8/atlantic8.github.io.git #https://Atlantic8:cwq1713321614@github.com/Atlantic8/atlantic8.github.io.git
   branch: master
 
